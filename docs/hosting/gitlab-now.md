@@ -1,6 +1,6 @@
-# GitLab now: local Copilot, separate GitLab credentials and MR
+# GitLab integration: credentials, CI and merge requests
 
-Copilot CLI authentication grants access to an assistant, **not** to your GitLab project; `glab` has its own host and token. Neither GitLab nor Copilot was authenticated in this repository; `glab` was globally absent. The first lab has no Git remote or `.git`. Start remote operations **only** in an existing, authorized GitLab clone, after you have completed [first real feature](../start/first-real-feature.md) and a human has reviewed code and independent checks. Never print a credential-bearing Git remote URL in a transcript. [source:gitlab-cli]
+For a project hosted on GitLab, Copilot CLI authentication grants access to an assistant, **not** to your GitLab project; `glab` has its own host and token. Neither GitLab nor Copilot was authenticated in this repository; `glab` was globally absent. The first lab has no Git remote or `.git`. Start remote operations **only** in an existing, authorized GitLab clone, after you have completed [first real feature](../start/first-real-feature.md) and a human has reviewed code and independent checks. Never print a credential-bearing Git remote URL in a transcript. [source:gitlab-cli]
 
 ## Read before write
 

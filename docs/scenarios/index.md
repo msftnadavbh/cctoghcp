@@ -9,7 +9,8 @@ Every scenario includes a reviewed local prep and deterministic check. **CLI pro
 | Model | [F Hydra experiment](F-hydra-experiment.md), [G pin model](G-pin-model.md) |
 | Parallel/review | [H fleet](H-fleet.md), [I reviewer](I-reviewer.md) |
 | Customize | [J skills](J-skills.md), [K existing CLAUDE](K-existing-claude.md), [L MCP](L-mcp.md), [T hooks](T-hooks.md) |
-| Build/host | [M debug](M-debug.md), [N refactor](N-refactor.md), [O GitLab MR](O-gitlab-mr.md), [P CI](P-ci.md), [Q future GitHub](Q-future-github.md) |
+| Build and review | [M debug](M-debug.md), [N refactor](N-refactor.md) |
+| Optional host integrations | [O GitLab MR](O-gitlab-mr.md), [P CI](P-ci.md), [Q GitHub-hosted delegation](Q-future-github.md) |
 | Automate/continue | [R headless](R-headless.md), [S resume](S-resume.md) |
 
 Each page has goal/prerequisites, exact local start/check, a specific optional prompt, checkpoints, permission/external effects, an escape and Claude analogy with evidence tier. An **initial expected oracle failure is a verified reproduction, not a passing feature**. No optional paid/client action was executed for this guide. For a real CLI session verify installation, `/env`, selected cwd and policies first; never substitute an invented transcript for a recorded result. Interactive examples narrow visible CLI tools, suppress remote export and automatic temp access; `--disallow-temp-dir` does not revoke permission to a separately approved `/tmp` cwd and was not runtime validated here. The broad-permission isolation exercise deliberately does **not** claim that flag makes `--allow-all` safe.

@@ -1,8 +1,8 @@
-# Q — Future GitHub-only capability decision
+# Q — GitHub-hosted delegation decision
 
 ## Goal and prerequisites
 
-Decide whether remote delegation applies without altering current GitLab source. Cloud operations require a separately approved GitHub target, entitlement and capable gh version; none are available in this local lab.
+If a target repository is GitHub-hosted, decide whether remote delegation applies. Cloud operations require a separately approved GitHub target, entitlement and capable gh version; none are available in this local lab. This scenario does not propose a source-host change.
 
 ## Start and deterministic check
 
@@ -15,4 +15,4 @@ python3 -B labs/sample-app/scripts/check_lab.py
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** record target host, policy, versions and human approval *before* any `/delegate`. **Verification:** two offline commands pass but do not prove cloud task availability. **Permissions:** no GitHub remote write by default; PR approval is separate from local code review. **External effects:** none in lab; optional `/delegate` may checkpoint branch/open draft PR. **Escape:** GitLab remains source → follow [scenario O](O-gitlab-mr.md) instead. **Claude analogy/difference:** cloud delegation and remote-control service do not migrate GitLab source. [source:github-agent-tasks] Public preview unavailable in observed gh.
+**Checkpoint:** record target host, policy, versions and human approval *before* any `/delegate`. **Verification:** two offline commands pass but do not prove cloud task availability. **Permissions:** no GitHub remote write by default; PR approval is separate from local code review. **External effects:** none in lab; optional `/delegate` may checkpoint branch/open draft PR. **Escape:** no GitHub-hosted target → stay with local review; for a GitLab MR, follow [scenario O](O-gitlab-mr.md). **Claude analogy/difference:** cloud delegation and remote-control service do not change the source host. [source:github-agent-tasks] Public preview unavailable in observed gh.

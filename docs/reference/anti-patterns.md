@@ -12,7 +12,7 @@
 | Installing a plugin from schema pass | Lifecycle unverified | Keep artifact inert pending reviewed install test |
 | Loading MCP server instructions blindly | Untrusted prompt authority | Review server and explicit allowlist |
 | Pasting raw CI trace | Secret/injection risk | Lossy sanitized bridge and private original |
-| Turning GitLab MR into GitHub PR | Wrong hosting action | Preserve GitLab path, defer GitHub lane |
+| Turning GitLab MR into GitHub PR | Wrong hosting action | Use the selected host's review workflow; GitHub cloud delegation requires a GitHub-hosted target |
 | Claiming model experiment outcome in advance | False evidence | Record measured exits/time/credits only after run |
 | Equating fixture with Copilot runtime | Portability overclaim | Label tests as fake/protocol/static |
 | Compact without handoff | Missing decisions | Write nine-field handoff first |

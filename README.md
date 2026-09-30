@@ -1,20 +1,10 @@
 # Claude Code → GitHub Copilot
 
-**Keep the Claude Code assets that already work. Learn the Copilot-specific controls. Complete useful work without changing your Git host.**
+**Keep the Claude Code assets that already work. Learn the Copilot-specific controls. Complete useful work in your existing repository.**
 
 This repository is for developers who already use Claude Code confidently and want to become productive with **GitHub Copilot CLI**. It translates familiar workflows—investigation, planning, implementation, delegation and review—without reteaching agentic coding or assuming that similarly named features behave identically.
 
-The starting point is an existing **GitLab clone**, or a disposable local lab with no remote. You do not need a GitHub-hosted repository, GitHub Issues, Actions, a pull request or a plugin framework to begin.
-
-## GitLab today, GitHub only when needed
-
-| Work | Runtime and integration | Source-host requirement |
-| --- | --- | --- |
-| Analyze code, edit files and run checks | Local Copilot CLI tools and shell | No move from GitLab required |
-| Read GitLab MRs or investigate pipelines | Separately authenticated `glab`, APIs or optional MCP | GitLab access |
-| Delegate to Copilot cloud agent | GitHub-hosted agent workflow | GitHub-hosted target repository |
-
-Local execution does **not** mean local model inference or that no data leaves your machine. The default workflow uses your Copilot entitlement and permitted models; GitHub authentication, organization policy and session-data settings remain separate from GitLab credentials and source hosting. See [capability boundaries](docs/hosting/capability-boundaries.md).
+Start with your existing checkout, whatever its source host, or the disposable local lab with no remote. You do not need GitHub Issues, Actions, a pull request or a plugin framework to practice local Copilot CLI workflows. Local execution does **not** mean local model inference or that no data leaves your machine. Copilot entitlement, organization policy and session-data settings are separate from source-host credentials. See [capability boundaries](docs/hosting/capability-boundaries.md).
 
 ## Retain first; adapt selectively
 
@@ -38,7 +28,7 @@ Then follow the progressive path:
 
 1. **[First 15 minutes](docs/start/first-15-minutes.md):** inspect retained instructions, investigate a deliberately introduced validation bug, approve a bounded repair, review the diff, check behavior and resume the session.
 2. **[First hour](docs/start/first-hour.md):** continue on the same copy; plan an optional stock filter, reuse a skill, request a repository-aware review and consider narrowly scoped Autopilot.
-3. **[First real feature](docs/start/first-real-feature.md):** take reviewed changes into a GitLab checkout, validate there, then explicitly approve publication.
+3. **[First real feature](docs/start/first-real-feature.md):** hand off reviewed changes to an authorized checkout, validate there and approve any publication separately; GitLab MR steps are an optional worked example.
 
 The Copilot walkthrough assumes an entitled, authenticated developer. Offline alternatives exercise the lab, not the product. Installation and account provisioning are separate from the unmeasured 15-minute usability target.
 
@@ -51,8 +41,11 @@ The Copilot walkthrough assumes an entitled, authenticated developer. Offline al
 | Coordinate workers or evaluate models | [Fleet and subagents](docs/workflows/fleet-and-subagents.md) · [Models and HydraFusion research preview](docs/workflows/models-and-hydrafusion.md) |
 | Reuse configuration | [Inventory](docs/migration/configuration-inventory.md) · [Instructions](docs/customization/instructions.md) · [Skills](docs/customization/skills.md) |
 | Manage longer tasks or automation | [Sessions and context](docs/workflows/sessions-and-context.md) · [Headless and CI](docs/workflows/headless-and-ci.md) |
-| Work with your source host | [GitLab now](docs/hosting/gitlab-now.md) · [GitHub later](docs/hosting/github-later.md) |
 | Practice or diagnose a problem | [20 scenarios](docs/scenarios/index.md) · [Troubleshooting](docs/reference/troubleshooting.md) |
+
+## Source-host integrations (optional)
+
+Source hosting is an independent choice, not a destination of this learning path. For GitLab MR/CI work, use separately authorized [`glab` and GitLab integration](docs/hosting/gitlab-now.md). [GitHub-hosted capabilities](docs/hosting/github-later.md), such as cloud delegation and PR workflows, require a GitHub-hosted target repository. Neither integration is required for local investigation, implementation or review. Check [hosting and authentication boundaries](docs/hosting/capability-boundaries.md) before using either.
 
 ## Validate the repository
 
