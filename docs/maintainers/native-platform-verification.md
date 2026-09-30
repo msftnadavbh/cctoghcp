@@ -1,10 +1,22 @@
-# Native practice API and verification handoff
+# Native practice: platform support and verification
 
-This is the implementation contract for the next documentation writer, not an
-assertion that Windows or macOS CI has already run. Local evidence below is from
-Linux with Python 3.12.3. Native Windows PowerShell 7+ and macOS zsh jobs are
-configured in [the workflow](../../.github/workflows/validate.yml); their results
-must be checked after the lead publishes the authorized branch.
+The native lab was executed on Windows and macOS in [CI run 36757869730](https://github.com/msftnadavbh/cctoghcp/actions/runs/36757869730)
+at commit `f733c84e44ad940f039b01ae1f32ea1ac99c7043` on September 30, 2026.
+The Windows job used Windows Server 2025, PowerShell 7 and Python 3.12.10;
+all 17 practice tests, three app tests and the first-lesson shell smoke check passed.
+The macOS job used macOS 26.6.2 arm64, zsh and Python 3.12.10; 16 practice tests
+passed with the Windows-only junction test skipped, plus three app tests and
+the first-lesson shell smoke check passed. Ubuntu ran the full suite: 67 passed,
+one Windows-only skip, three app tests and independent baseline acceptance passed.
+See [machine-readable results](../../results/native-platform.json).
+
+These are hosted-runner results, not tests of every desktop installation.
+Microsoft Store Python, OneDrive and authenticated Copilot interactions were not
+tested. Cloud-managed/reparse directories are refused by design. The independent
+security review covered the portable launcher before publication; native CI then
+caught a CRLF diff issue and a Windows-reserved test filename, both fixed before
+the successful run. The first-lesson smoke check uses a known canonical repair,
+not a model-generated answer.
 
 ## Commands and first-lesson outcomes
 
@@ -159,6 +171,8 @@ Raw help captures use `-text` in `.gitattributes` to preserve evidence hashes;
 other files retain normal Git text handling. Copy and checker comparisons use
 checkout bytes, including any checkout line endings.
 
-Before merge, the lead must obtain native CI results and the required independent
-Opus 5.5 `alternative-reviewer` review. No native execution, publication, commit,
-or review is claimed by this handoff.
+Independent cross-family review and native CI have been completed for the
+portable implementation. The observations at the top of this page supersede
+the earlier Linux-only development counts below; historical test records are
+not retroactively relabeled as native results. No paid model, hook dispatcher,
+MCP connection or plugin installation was used for native verification.

@@ -1,0 +1,41 @@
+{
+  "date": "2026-09-30",
+  "tested_commit": "f733c84e44ad940f039b01ae1f32ea1ac99c7043",
+  "run_url": "https://github.com/msftnadavbh/cctoghcp/actions/runs/36757869730",
+  "conclusion": "success",
+  "windows": {
+    "os": "Microsoft Windows Server 2025 10.0.26100",
+    "shell": "PowerShell 7; major version checked by workflow",
+    "python": "3.12.10",
+    "practice_tests": {"run": 17, "passed": 17, "skipped": 0},
+    "app_tests_passed": 3,
+    "first_lesson_shell_smoke": "passed",
+    "junction_and_symlink_rejection": "both executed and passed"
+  },
+  "macos": {
+    "os": "macOS 26.6.2 25G83 arm64",
+    "shell": "zsh --no-rcs",
+    "python": "3.12.10",
+    "practice_tests": {"run": 17, "passed": 16, "skipped": 1},
+    "skip_reason": "Windows-only junction test",
+    "app_tests_passed": 3,
+    "first_lesson_shell_smoke": "passed"
+  },
+  "ubuntu": {
+    "os": "Ubuntu 24.04.5",
+    "python": "3.12.3",
+    "repository_tests": {"run": 68, "passed": 67, "skipped": 1},
+    "skip_reason": "Windows-only junction test",
+    "app_tests_passed": 3,
+    "independent_baseline_acceptance": "passed",
+    "static_validation": "passed"
+  },
+  "first_lesson": "Setup succeeds, broken check returns 1, diff returns 0, trusted canonical repair applied, repaired check returns 0. No Copilot model was used.",
+  "prior_failure": {
+    "run_url": "https://github.com/msftnadavbh/cctoghcp/actions/runs/36757639409",
+    "windows_findings": ["CRLF text was incorrectly summarized as binary", "Test filename used a Windows reserved device name"],
+    "resolution": "Normalize CRLF for display while continuing to reject bare control characters; use an ordinary test filename; add a cross-platform CRLF regression test."
+  },
+  "not_tested": ["Authenticated Copilot sessions", "Copilot installation commands", "Microsoft Store Python", "OneDrive and other cloud-managed directories", "Advanced POSIX helpers on native Windows"],
+  "limits": ["Practice executes reviewed code, not an OS sandbox", "Direct-child timeouts do not guarantee descendant termination", "Captured output is bounded in memory, not by a disk quota", "No automatic recursive cleanup of child-writable directories"]
+}
