@@ -11,6 +11,28 @@
         {"run":"python -m pip install -r requirements-validation.txt"},
         {"run":"python -B -m scripts.validate","env":{"PYTHONDONTWRITEBYTECODE":"1"}}
       ]
+    },
+    "native-windows":{
+      "runs-on":"windows-latest",
+      "defaults":{"run":{"shell":"pwsh"}},
+      "steps":[
+        {"uses":"actions/checkout@v4","with":{"persist-credentials":false}},
+        {"uses":"actions/setup-python@v5","with":{"python-version":"3.12"}},
+        {"run":"if ($PSVersionTable.PSVersion.Major -lt 7) { throw 'PowerShell 7+ required' }; python -B -m unittest discover -s tests -p test_practice.py -v"},
+        {"run":"python -I -B labs/sample-app/scripts/check_lab.py"},
+        {"name":"First lesson in PowerShell 7", "run":"$Book = (Get-Location).Path\n$Lab = Join-Path $HOME 'Copilot catalog practice'\n$Practice = Join-Path $Book 'scripts/practice.py'\npython -I -B $Practice setup $Lab --exercise validation --with-config\nif ($LASTEXITCODE -ne 0) { throw 'setup failed' }\npython -I -B $Practice check $Lab --exercise validation\nif ($LASTEXITCODE -ne 1) { throw 'expected broken validation exit 1' }\npython -I -B $Practice diff $Lab\nif ($LASTEXITCODE -ne 0) { throw 'diff failed' }\n# CI-only repair from the trusted canonical source, no model call.\nCopy-Item -LiteralPath (Join-Path $Book 'labs/sample-app/src/catalog.py') -Destination (Join-Path $Lab 'src/catalog.py')\npython -I -B $Practice check $Lab --exercise validation\nif ($LASTEXITCODE -ne 0) { throw 'fixed validation failed' }"}
+      ]
+    },
+    "native-macos":{
+      "runs-on":"macos-latest",
+      "defaults":{"run":{"shell":"zsh --no-rcs -e {0}"}},
+      "steps":[
+        {"uses":"actions/checkout@v4","with":{"persist-credentials":false}},
+        {"uses":"actions/setup-python@v5","with":{"python-version":"3.12"}},
+        {"run":"python -B -m unittest discover -s tests -p test_practice.py -v"},
+        {"run":"python -I -B labs/sample-app/scripts/check_lab.py"},
+        {"name":"First lesson in zsh", "run":"Book=\"$(pwd -P)\"\nLab=\"$HOME/Copilot catalog practice\"\nPractice=\"$Book/scripts/practice.py\"\npython3 -I -B \"$Practice\" setup \"$Lab\" --exercise validation --with-config\nresult=0\npython3 -I -B \"$Practice\" check \"$Lab\" --exercise validation || result=$?\ntest \"$result\" -eq 1\npython3 -I -B \"$Practice\" diff \"$Lab\"\n# CI-only repair from the trusted canonical source, no model call.\ncp \"$Book/labs/sample-app/src/catalog.py\" \"$Lab/src/catalog.py\"\npython3 -I -B \"$Practice\" check \"$Lab\" --exercise validation"}
+      ]
     }
   }
 }

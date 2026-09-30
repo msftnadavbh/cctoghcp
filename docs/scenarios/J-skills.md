@@ -1,18 +1,17 @@
-# J — Package existing skills without installing
+# J — Reuse a Claude skill
+
+Use the configured [first-lesson lab](../start/first-15-minutes.md): it copies existing `.claude/skills`, not a second skill tree. Inspect `.claude/skills/repo-recon/SKILL.md` and `/skills` in the Copilot session. If visible, ask: “Use the discovered repo-recon skill to identify `integer()` callers and one negative test; cite current lab files; no edits.” **Expected:** a brief grounded in the same source as the first lesson; if the skill isn't visible, stop and check `/env` and workspace instead of assuming it ran. Validation stays failing until the fix. Optional plugin packaging and installation are separate from this skill reuse; [skills](../customization/skills.md).
 
 ## Goal and prerequisites
 
-Test canonical `.claude/skills` reuse and deterministic plugin packaging. Python 3 and optional validator libraries; no hosting or plugin lifecycle.
+Use the configured lab and review skill text.
 
 ## Start and deterministic check
 
 ```sh
-python3 -B -m scripts.package_plugin /tmp/scenario-j-skills.zip
-python3 -B -m scripts.validate --static-only
+copilot --version
 ```
-
-Use a **new** archive path (exclusive create); inspect [manifest](../../examples/plugin/plugin.json) and [canonical skills](../../.claude/skills). **Optional prompt in a separately authorized read-only CLI:** “Which existing skill fits reviewing `src/catalog.py`? Summarize minimum task boundary; do not invoke or install.”
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** ZIP has root manifest and three mechanically copied skills; schema check is local. **Verification:** static check and deterministic package tests pass; no CLI discovery/lifecycle inference. **Permissions:** offline packaging only; optional paid read call separately authorized. **External effects:** one local archive, no activation. **Escape:** 1.0.89 install help omits documented local paths—keep ZIP inert; future human can review unpacked directory and documented local-install candidate separately. **Claude analogy/difference:** project skills remain canonical without duplicating live instruction trees. [source:plugin-reference] [claim:plugin-portability] Version 1.0.89, runtime untested.
+**Prompt:** request skill as above. **Checkpoint:** inspect discovery. **Verification:** check remains failing before fix. **Permissions:** read tools. **External effects:** optional credits. **Escape:** don't install a plugin to force discovery. **Claude analogy:** reuse project skills. [source:plugin-reference]

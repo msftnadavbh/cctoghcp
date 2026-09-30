@@ -4,7 +4,7 @@
 
 | Claude or Copilot surface | Recognized locations / migration intent | Scope and verification boundary |
 | --- | --- | --- |
-| Always-on instructions | Root `CLAUDE.md`, `.claude/CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md` | Root CLAUDE stays; *bare* lab copies none. First-15-minute `--with-config` copies one reviewed fixture CLAUDE/import. Use `/instructions`/`/env` to inspect actual attachment |
+| Always-on instructions | Root `CLAUDE.md`, `.claude/CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md` | Retain your project's own CLAUDE. `--with-config` copies the book's CLAUDE and its import into the lab; use `/instructions` and `/env` to confirm attachment |
 | Narrow instruction | Nested `CLAUDE.md`, `.claude/rules/*.md`, `.github/instructions/*.instructions.md` | v1.0.89 rules support; validate matching/nonmatching path and attachment, not inferred precedence |
 | Shared settings | `.claude/settings.json` documented subset; `.github/copilot/settings.json` Copilot repo settings | `companyAnnouncements`, `disableAllHooks`, `enabledPlugins`, `extraKnownMarketplaces`, `hooks` need key-by-key review; no blanket permissions/provider translation |
 | Private settings | `.claude/settings.local.json`, `~/.copilot/config.json`, private HOME | Never commit; persisted grants/secret-bearing settings can change trust. Review source without outputting values |

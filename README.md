@@ -1,66 +1,40 @@
 # Claude Code → GitHub Copilot
 
-**Keep the Claude Code assets that already work. Learn the Copilot-specific controls. Complete useful work in your existing repository.**
+**Make your first change with Copilot without rebuilding your Claude setup.**
 
-This repository is for developers who already use Claude Code confidently and want to become productive with **GitHub Copilot CLI**. It translates familiar workflows—investigation, planning, implementation, delegation and review—without reteaching agentic coding or assuming that similarly named features behave identically.
+Already comfortable in Claude Code? Keep the `CLAUDE.md` and `.claude/skills` that work in your existing repository. Learn the few Copilot CLI controls that change how you investigate, approve, and resume a task. This book works with a local checkout regardless of whether its source is hosted on GitLab or GitHub; a GitHub repository is not needed to practice. Copilot model calls still require an entitled account and network access.
 
-Start with your existing checkout, whatever its source host, or the disposable local lab with no remote. You do not need GitHub Issues, Actions, a pull request or a plugin framework to practice local Copilot CLI workflows. Local execution does **not** mean local model inference or that no data leaves your machine. Copilot entitlement, organization policy and session-data settings are separate from source-host credentials. See [capability boundaries](docs/hosting/capability-boundaries.md).
+## Start on your machine
 
-## Retain first; adapt selectively
+Use **Windows PowerShell 7+** or **macOS Terminal (zsh)**. Install Copilot with [GitHub's installation instructions](https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli):
 
-Start by keeping your useful `CLAUDE.md` and compatible `.claude/skills` in place. Inventory existing configuration before adding or activating anything. Copilot-specific instructions or agents should address a real difference—not duplicate the same repository guidance.
-
-Reuse is selective: discovery does not establish identical scope, instruction inheritance, permission semantics or hook behavior. Review shared settings and MCP definitions individually; do not copy user state or assume session portability. The [compatibility guide](docs/migration/compatibility.md) and [46-row migration matrix](evidence/migration-matrix.json) make those distinctions explicit.
-
-## Quickstart: establish a local baseline
-
-From this repository's root, with Python 3 available (verified on Python 3.12.3/Linux), run:
-
-```sh
-python3 -B labs/sample-app/scripts/check_lab.py
-python3 -B labs/sample-app/src/catalog.py --query mug --limit 1
-python3 -B -m scripts.inventory .
-```
-
-Expect three passing app tests, then a JSON page containing one mug with a matching total of two. The inventory reports known configuration paths and field names without printing credential values or executing discovered scripts. **Found does not mean supported.** These commands need no account, remote, network access or dependency installation.
-
-Then follow the progressive path:
-
-1. **[First 15 minutes](docs/start/first-15-minutes.md):** inspect retained instructions, investigate a deliberately introduced validation bug, approve a bounded repair, review the diff, check behavior and resume the session.
-2. **[First hour](docs/start/first-hour.md):** continue on the same copy; plan an optional stock filter, reuse a skill, request a repository-aware review and consider narrowly scoped Autopilot.
-3. **[First real feature](docs/start/first-real-feature.md):** hand off reviewed changes to an authorized checkout, validate there and approve any publication separately; GitLab MR steps are an optional worked example.
-
-The Copilot walkthrough assumes an entitled, authenticated developer. Offline alternatives exercise the lab, not the product. Installation and account provisioning are separate from the unmeasured 15-minute usability target.
-
-## Choose your next task
-
-| Need | Guide |
+| Windows PowerShell 7+ | macOS Terminal |
 | --- | --- |
-| Translate a Claude habit | [Muscle memory](docs/reference/muscle-memory.md) · [CLI cheat sheet](docs/reference/cli-cheat-sheet.md) |
-| Control scope and continuation | [Planning](docs/workflows/planning.md) · [Autopilot](docs/workflows/autopilot.md) · [Permissions](docs/workflows/permissions.md) |
-| Coordinate workers or evaluate models | [Fleet and subagents](docs/workflows/fleet-and-subagents.md) · [Models and HydraFusion research preview](docs/workflows/models-and-hydrafusion.md) |
-| Reuse configuration | [Inventory](docs/migration/configuration-inventory.md) · [Instructions](docs/customization/instructions.md) · [Skills](docs/customization/skills.md) |
-| Manage longer tasks or automation | [Sessions and context](docs/workflows/sessions-and-context.md) · [Headless and CI](docs/workflows/headless-and-ci.md) |
-| Practice or diagnose a problem | [20 scenarios](docs/scenarios/index.md) · [Troubleshooting](docs/reference/troubleshooting.md) |
+| `winget install GitHub.Copilot` | `brew install --cask copilot-cli` |
+| `copilot --version` | `copilot --version` |
+| `copilot login` | `copilot login` |
 
-## Source-host integrations (optional)
+Install [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell) if needed. Login opens an account authorization flow; do it only on a device and account you intend to use. Check organization policy and any personal/workspace instructions before a model call. Python **3.12+** is needed for the offline practice app ([python.org](https://www.python.org/downloads/)); verify `python --version` on Windows or `python3 --version` on macOS. If Windows `python` is missing, opens a Store alias, or reports an older version, check `py -3.12 --version` and substitute `py -3.12` for **every** Windows `python` command in the lessons. Otherwise install/select Python 3.12+ before continuing. On macOS, select an installed Python 3.12+ if `python3` is older. No Node/npm installation is required for the install choices above.
 
-Source hosting is an independent choice, not a destination of this learning path. For GitLab MR/CI work, use separately authorized [`glab` and GitLab integration](docs/hosting/gitlab-now.md). [GitHub-hosted capabilities](docs/hosting/github-later.md), such as cloud delegation and PR workflows, require a GitHub-hosted target repository. Neither integration is required for local investigation, implementation or review. Check [hosting and authentication boundaries](docs/hosting/capability-boundaries.md) before using either.
+The fastest useful exercise is [**First 15 minutes: find and fix a boolean validation bug**](docs/start/first-15-minutes.md). It creates a private lab outside this book, copies a `CLAUDE.md` with its import and three skills, asks Copilot to trace the defect with read tools, then has you approve a single repair. Expect a failing check before the fix and a passing check afterward; the lab never overwrites or automatically deletes a destination. You can also run the lab offline without Copilot.
 
-## Validate the repository
+Keep **both the book checkout and the lab in ordinary local directories**, not OneDrive, other cloud-managed folders, symlink paths or Windows junctions. All Windows reparse points are refused; OneDrive is not supported. Check the actual checkout location—Documents may be redirected to OneDrive even when your home directory is local.
 
-The lab is standard-library-only. Full repository validation additionally needs the packages in [requirements-validation.txt](requirements-validation.txt), installed in your own validation environment. That optional bootstrap contacts a package registry; the check itself is offline:
+Want to start in **your existing checkout** instead? Keep its own `CLAUDE.md`; from that checkout, after inspecting its instructions and permissions, run `copilot`, then `/env` and `/instructions`. Try: “Trace the callers of the validation function in this repository; cite file and line, propose the smallest regression check, and do not edit yet.” Inspect the answer against source before allowing edits. The lab below is safer when you want a known expected result.
 
-```sh
-python3 -B -m scripts.validate
-```
+## Translate your workflow
 
-It covers tests, baseline acceptance, internal Markdown links and anchors, configuration parsing, plugin packaging and generated-reference consistency. [GitLab CI](.gitlab-ci.yml) and [GitHub Actions](.github/workflows/validate.yml) use this command without paid models or Copilot credentials. Hook/MCP examples remain inert; GitLab helpers are dry-run by default. Review [SECURITY.md](SECURITY.md) before activation and [CONTRIBUTING.md](CONTRIBUTING.md) before changing claims or assets.
+| Familiar Claude habit | Copilot CLI action | Check before moving on |
+| --- | --- | --- |
+| Keep repository guidance | Retain `CLAUDE.md`; inspect `/instructions` | Correct file and imports attached, no contradictory duplicate policy |
+| Explore before editing | Start with `--available-tools='view,grep,glob'` | Citations match actual code; no shell or edit tools visible |
+| Plan a multi-seam change | `/plan`, inspect/edit the plan with Ctrl+Y | Inputs, owned files, checks and stop conditions are explicit |
+| Approve a write | Resume with the `edit` tool available; check `/permissions` mode | Keep manual approvals; approve only the requested file and action |
+| Reuse a skill or reviewer | Inspect `/skills` or `/agent` in the active workspace | Definition and instruction inheritance match the task |
+| Continue yesterday's work | `copilot --resume` opens a session picker | Confirm session, cwd, files, grants and pending tasks first |
 
-## Verification and limits
+Follow [first hour](docs/start/first-hour.md) for a stock-filter feature in the **same** lab; [first real feature](docs/start/first-real-feature.md) takes a reviewed change into your real checkout. For individual controls use [planning](docs/workflows/planning.md), [permissions](docs/workflows/permissions.md), [Autopilot](docs/workflows/autopilot.md), [sessions](docs/workflows/sessions-and-context.md), [skills](docs/customization/skills.md) or [troubleshooting](docs/reference/troubleshooting.md). [Scenarios A–T](docs/scenarios/index.md) offer optional exercises; advanced automation is separate from the native interactive path.
 
-The implementation baseline is **September 30, 2026**: **50 repository tests, 3 app tests and external baseline acceptance passed**. Copilot CLI **1.0.89** received isolated help/version checks only; this is not proof of authenticated behavior.
+The native lab uses Python 3.12+ and the standard library. Its tests and first-lesson commands passed in **Windows PowerShell 7 and macOS zsh CI**. Copilot login and model interactions were not part of those tests. See [platform support and limits](docs/maintainers/native-platform-verification.md) for the exact environments and results. Nothing in the learning path requires a push, commit, hook, plugin, MCP server or remote integration.
 
-No authenticated Copilot or GitLab integration, HydraFusion comparison, hook dispatch, MCP client connection, plugin lifecycle or hosted CI run was exercised. Real CLI stdin/JSONL behavior and version-dependent configuration semantics remain qualified. Fake-process tests are not product tests, and permission controls are not an OS sandbox.
-
-Consult [versions](docs/reference/versions.md), [sources](SOURCES.md), the [claim ledger](evidence/claims.json) and [review findings](results/review-passes.md) for evidence and remaining boundaries. No default validation step publishes, pushes, merges or deploys.
+Maintaining this repository? Run `python3 -B -m scripts.validate` for the Linux full suite, with [validation dependencies](requirements-validation.txt) installed. Native lab tests use `python -B -m unittest discover -s tests -p test_practice.py -v` on Windows, or `python3` on macOS.

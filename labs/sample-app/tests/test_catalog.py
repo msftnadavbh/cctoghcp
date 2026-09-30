@@ -29,7 +29,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_cli(self):
         path = Path(__file__).resolve().parents[1] / "src/catalog.py"
-        proc = subprocess.run([sys.executable, str(path), "--query", "bag"],
-                              capture_output=True, text=True)
+        proc = subprocess.run([sys.executable, "-I", "-B", str(path), "--query", "bag"],
+                              capture_output=True, text=True, timeout=5)
         self.assertEqual(proc.returncode, 0)
         self.assertEqual(json.loads(proc.stdout)["items"][0]["sku"], "C3")

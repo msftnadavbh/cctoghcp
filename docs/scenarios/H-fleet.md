@@ -1,18 +1,17 @@
-# H — Fleet of independent read-only investigators
+# H — Three read-only investigations, one editor
+
+Use the repaired lab from [first hour](../start/first-hour.md); its in-stock check should exit 1. Launch Copilot with `view,grep,glob` and inspect permissions. If `/fleet` is available, ask for three **read-only** reports: A validation callers, B filtering/pagination semantics, C request/CLI negative cases. Require each to cite path:line, state uncertainty and propose a check. Inspect `/tasks` and compare findings with source; the reports should not edit files or make `in-stock` pass. Reconcile disagreements before assigning a *single* editor; inspect the resulting diff before running first-hour checks. For a two-line repair, skip fleet. [Fleet guide](../workflows/fleet-and-subagents.md).
 
 ## Goal and prerequisites
 
-Compare three independent findings without overlapping edits. Fresh `in-stock` copy, optional authorized CLI fleet; no Git host.
+Use the repaired lab with failing in-stock check.
 
 ## Start and deterministic check
 
 ```sh
-python3 -B -m scripts.lab setup /tmp/scenario-h --state /tmp/checkpoint-state --exercise in-stock
-python3 -I -B labs/expected-results/acceptance.py /tmp/scenario-h in-stock
+copilot --version
 ```
-
-The initial feature failure is expected. **Optional prompt via `/fleet` or `--fleet`:** “Assume `None|bool`, filter before slicing, preserve totals. Three **read-only** reports: A `integer()` callers; B filter/pagination order; C request/CLI plus missing tests. Each gives assumption, file:line evidence, observed vs hypothesis, consequence, proposed check and uncertainty. One integrator owns all later edits; no worker shell.” [Fleet contract](../../labs/exercises.json).
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** A/B/C independent reads → integrator reconciles → one editor → human diff → separate oracle. `/tasks`: `a` nested levels, `f` finished, `X` kill, `B` background sync. **Verification:** before integration, no changed files and feature oracle still fails; afterward run oracle only on reviewed edit. **Permissions:** verify actual tool binding `view,grep,glob`, not prose; shell tasks and agent tasks differ. **External effects:** optional parallel credits. **Escape:** uncertain shared contract or two editors → stop fleet and serialize. **Claude analogy/difference:** Claude teams and Copilot fleet share delegation intent, not automatic consensus or a known picker. [source:cli-reference] 1.0.89 help, no fleet execution.
+**Prompt:** three read tasks above. **Checkpoint:** reconcile reports. **Verification:** no edits before integration. **Permissions:** read tools. **External effects:** parallel credits. **Escape:** serialize uncertain work. **Claude analogy:** teams need one editor. [source:cli-reference]

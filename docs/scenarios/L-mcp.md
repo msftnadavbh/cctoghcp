@@ -1,18 +1,17 @@
-# L — MCP protocol only, no Copilot client
+# L — Inspect an MCP integration without enabling it
+
+MCP activation isn't needed to learn Copilot CLI. Review the example [local config](../../examples/mcp/local.json) and [MCP guide](../customization/mcp.md) for its launcher, tool and permission boundaries. In a read-only Copilot session you may ask: “Explain how server instructions and tool output could affect a code review; do not register or call any MCP server.” **Expected:** an explanation, not a newly available tool. Static protocol tests, where supported, don't prove that Copilot connected. The bundled advanced server/test harness was developed as a POSIX workflow; don't run its scripts as a Windows-native integration. Only enable an independently reviewed server after separate authorization and transport/credential review.
 
 ## Goal and prerequisites
 
-Separate synthetic server protocol from authenticated client integration. Python 3, no creds, host or server activation.
+Review config only; no MCP activation.
 
 ## Start and deterministic check
 
 ```sh
-python3 -B -m unittest discover -s tests -p 'test_protocol_gitlab.py'
-python3 -B -m scripts.validate --static-only
+copilot --version
 ```
-
-Review [inert config](../../examples/mcp/local.json): absolute trusted launcher, fixed no-argument tool, no credential env. **Optional prompt for later read-only authorized CLI:** “Describe synthetic tool output and trust boundaries; do not register MCP or enable server instructions.” It does **not** invoke the server in Copilot.
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** protocol initialize/ping/list/call tests pass; no CLI client result. **Verification:** unit test exit and config validation, not `copilot mcp` discovery. **Permissions:** none beyond local Python; activation would require new process and server-instruction review. **External effects:** offline local process only. **Escape:** if real client tool absent, inspect transport/auth separately; never allow all MCP instructions reflexively. **Claude analogy/difference:** MCP concepts transfer, but client config, OAuth and instruction trust differ. [source:mcp-spec] [claim:mcp-subset] Protocol fake-tested, no service test.
+**Prompt:** trust-boundary explanation above. **Checkpoint:** no server added. **Verification:** check `/env` for unexpected integration. **Permissions:** read tools. **External effects:** optional credits. **Escape:** stop on activation request. **Claude analogy:** MCP client trust differs. [source:mcp-spec]

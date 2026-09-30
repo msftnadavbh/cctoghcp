@@ -33,7 +33,7 @@ def validate_rows(rows, sources):
 def render(rows, name):
     a, b, c = OUTPUTS[name]
     lines = [f"# {name.removesuffix('.md').replace('-', ' ').title()}", "",
-             "Generated from [migration matrix](../../evidence/migration-matrix.json) by `python3 -B -m scripts.generate_reference`; do not edit this table manually.",
+              "Find the familiar task, try the Copilot action, then check the difference before approving tools. Start with the [hands-on lesson](../start/first-15-minutes.md).",
              "", f"| {a} | {b} | {c} |", "| --- | --- | --- |"]
     for row in rows:
         if name == "cli-cheat-sheet.md" and row["classification"] in {
@@ -42,7 +42,7 @@ def render(rows, name):
             continue
         cells = (row["habit"], row["syntax"], row["difference"])
         lines.append("| " + " | ".join(str(x).replace("|", "\\|").replace("`", "\\`") for x in cells) + " |")
-    lines.extend(["", "Per-row classification, version/status, source IDs and hosting: [migration matrix](../../evidence/migration-matrix.json). Entries are source/help observations, not authenticated runtime proof. [Versions](versions.md).", ""])
+    lines.extend(["", "Detailed classifications and supporting sources: [migration matrix](../../evidence/migration-matrix.json). Check your installed CLI and organization policy before relying on a version-dependent action. [Versions](versions.md).", ""])
     return "\n".join(lines)
 
 

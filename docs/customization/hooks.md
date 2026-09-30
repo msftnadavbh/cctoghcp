@@ -1,5 +1,7 @@
 # Hooks: optional defense, never the only gate
 
+**Advanced POSIX handler examples:** the first-lesson lab does not install hooks. On Windows/macOS use [interactive practice](../start/first-15-minutes.md) and independent `practice.py check`; do not run the launchers below as native commands or treat a handler unit test as CLI dispatcher evidence.
+
 Config validation binds each pre/post event to the entire exact native argv or
 shared launcher command. Event/mode swaps and appended arguments/commands fail.
 Native payloads do not reliably identify their event; `toolResult` is not used

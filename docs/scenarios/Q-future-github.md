@@ -1,18 +1,17 @@
-# Q — GitHub-hosted delegation decision
+# Q — When GitHub cloud delegation applies
+
+The first-lesson lab has no remote; stay with local `/review` and the independent check. If your **real** target repository is hosted on GitHub, ask in a read-only session: “Compare local `/review` with `/delegate` for this reviewed feature; do not create a task, branch or PR.” **Expected:** a decision, no cloud side effects. `/delegate` requires separate entitlement, target and approval; it does not publish a GitLab merge request. Check the current installed version and [GitHub-hosted guide](../hosting/github-later.md) before considering a cloud task. No GitHub move is implied by using Copilot CLI in a GitLab checkout.
 
 ## Goal and prerequisites
 
-If a target repository is GitHub-hosted, decide whether remote delegation applies. Cloud operations require a separately approved GitHub target, entitlement and capable gh version; none are available in this local lab. This scenario does not propose a source-host change.
+GitHub-hosted target only for cloud delegation.
 
 ## Start and deterministic check
 
 ```sh
-python3 -B -m scripts.validate --static-only
-python3 -B labs/sample-app/scripts/check_lab.py
+copilot --version
 ```
-
-**Optional authorized prompt:** “Compare local `/review` and GitHub `/delegate` for the reviewed change; create no task/branch/PR.” The [gh manual](https://cli.github.com/manual/gh_agent-task) documents preview `gh agent-task create/list/view`; observed gh 2.45.0 is below the >=2.80 minimum in lead research. `.github/workflows/copilot-setup-steps.yml` with `copilot-setup-steps` job prepares a **GitHub** cloud environment only when on its default branch; no workflow or issue schedule is installed here. This is a discussion, not authorization to activate. [source:github-copilot-setup-steps]
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** record target host, policy, versions and human approval *before* any `/delegate`. **Verification:** two offline commands pass but do not prove cloud task availability. **Permissions:** no GitHub remote write by default; PR approval is separate from local code review. **External effects:** none in lab; optional `/delegate` may checkpoint branch/open draft PR. **Escape:** no GitHub-hosted target → stay with local review; for a GitLab MR, follow [scenario O](O-gitlab-mr.md). **Claude analogy/difference:** cloud delegation and remote-control service do not change the source host. [source:github-agent-tasks] Public preview unavailable in observed gh.
+**Prompt:** compare delegation above. **Checkpoint:** identify target. **Verification:** no remote change in lab. **Permissions:** cloud approval separate. **External effects:** none by default. **Escape:** use local review if GitLab-hosted. **Claude analogy:** host is independent of CLI. [source:github-agent-tasks]

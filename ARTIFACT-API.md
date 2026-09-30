@@ -1,7 +1,7 @@
 # Foundation artifact API
 
 Run commands from the repository root, except the standalone lab checker.
-This is the handoff contract for the documentation writer, not the tutorial.
+This is the advanced POSIX automation contract. For native Windows PowerShell 7+ or macOS zsh practice, use [first 15 minutes](docs/start/first-15-minutes.md) and `scripts/practice.py` instead of the legacy setup/cleanup commands below.
 
 ## Offline commands
 
