@@ -1,6 +1,6 @@
 # Muscle Memory
 
-Find the familiar task, try the Copilot action, then check the difference before approving tools. Start with the [hands-on lesson](../start/first-15-minutes.md).
+Find the familiar task, try the Copilot action, then check the difference before approving tools. Start in [your own repository](../start/use-copilot-in-your-repository.md).
 
 | Claude habit | Copilot move | Caution |
 | --- | --- | --- |

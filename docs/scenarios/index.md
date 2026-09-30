@@ -1,6 +1,6 @@
-# Choose a Copilot CLI exercise
+# Optional practice and examples
 
-Start with [first 15 minutes](../start/first-15-minutes.md) to create a private lab outside this book, configure `$Lab`/`$Practice` in PowerShell 7+ or `Lab`/`Practice` in macOS zsh, and observe a reproducible validation failure. Continue on that same lab for [first hour](../start/first-hour.md). Each scenario below gives an additional question; use the shared lab unless a page explicitly needs a fresh one. The native `practice.py setup/diff/check` commands in the lessons are the supported cross-platform checks. Inspect the entire diff before executing edited lab code; the checker retains private artifacts and never deletes the lab. Paid Copilot actions require your login and approval; offline checks do not.
+For the main path, [work in your existing repository](../start/use-copilot-in-your-repository.md); no sample app, Python or lab setup is required. These optional exercises use a **separate** known-result Python lab, not your project's acceptance checks. If you choose one, start with [first 15 minutes](../start/first-15-minutes.md) to set up a private lab outside this book and observe a reproducible validation failure. Continue on that same lab for [first hour](../start/first-hour.md). Each scenario below gives an additional question; use the shared lab unless a page explicitly needs a fresh one. The native `practice.py setup/diff/check` commands in those lessons are for practice only. Inspect the entire diff before executing edited lab code; the checker retains private artifacts and never deletes the lab. Paid Copilot actions require your login and approval; offline checks do not.
 
 | Want to practice… | Start here |
 | --- | --- |

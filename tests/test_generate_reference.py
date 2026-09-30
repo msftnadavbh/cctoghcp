@@ -34,3 +34,19 @@ class ReferenceTests(unittest.TestCase):
                 self.assertNotIn("/tmp/", text)
                 self.assertNotIn("Generated from", text)
                 self.assertNotIn("scripts.lab setup", text)
+
+    def test_main_path_is_existing_repository_and_practice_is_optional(self):
+        readme = (ROOT / "README.md").read_text()
+        guide = (ROOT / "docs/start/use-copilot-in-your-repository.md").read_text()
+        for heading in ("Get started in your repository", "Commands and muscle memory",
+                        "Retain Claude configuration", "Daily workflows", "Model choices",
+                        "Resources and troubleshooting", "Source integrations"):
+            self.assertIn(heading, readme)
+        self.assertIn("Optional practice", readme)
+        self.assertIn("their own existing repository", readme)
+        for command in ("git status --short", "git diff", "copilot --resume"):
+            self.assertIn(command, guide)
+        for text in ("practice.py", "sample-app", "python -", "python3 -"):
+            self.assertNotIn(text, guide)
+        self.assertIn("Start in [your own repository](../start/use-copilot-in-your-repository.md).",
+                      render(json.loads(MATRIX.read_text()), "muscle-memory.md"))

@@ -1,6 +1,6 @@
-# First hour: plan and build a stock filter
+# Optional practice: first hour, plan and build a stock filter
 
-Continue the **same repaired lab** and shell variables (`$Lab`, `$Practice` in PowerShell or `Lab`, `Practice` in zsh) from [first 15 minutes](first-15-minutes.md). Don't set up another lab: this feature builds on the validation fix. Your task is optional `in_stock=None|bool` filtering in `list_products`, `handle_request` and CLI `--in-stock true|false`. Keep the response keys `items,total,offset,limit` and their existing types; `None` preserves unfiltered output, `True`/`False` select exact booleans. Reject integer, string, list and dict API values; filter by query **and** stock before pagination and count filtered matches in `total`. CLI invalid stock values exit 2 with an error on stderr, not JSON on stdout.
+**Optional exercise, not a prerequisite for [your own checkout](use-copilot-in-your-repository.md).** Continue the **same repaired lab** and shell variables (`$Lab`, `$Practice` in PowerShell or `Lab`, `Practice` in zsh) from [first 15 minutes](first-15-minutes.md). Don't set up another lab: this feature builds on the validation fix. Your task is optional `in_stock=None|bool` filtering in `list_products`, `handle_request` and CLI `--in-stock true|false`. Keep the response keys `items,total,offset,limit` and their existing types; `None` preserves unfiltered output, `True`/`False` select exact booleans. Reject integer, string, list and dict API values; filter by query **and** stock before pagination and count filtered matches in `total`. CLI invalid stock values exit 2 with an error on stderr, not JSON on stdout.
 
 ## Establish the before state
 

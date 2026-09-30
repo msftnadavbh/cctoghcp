@@ -1,6 +1,6 @@
-# Twenty operational rules
+# Best practices: twenty operational rules
 
-Each rule has an explicit **why**, a catalog example, a failure signal and a recovery. They are not substitutes for the [independent oracle](../workflows/review-and-validation.md). [source:cli-reference]
+Use these rules with [your own project](../start/use-copilot-in-your-repository.md). Each has a **why**, an optional catalog practice example, a failure signal and a recovery; substitute your own project's checks and paths. They are not substitutes for [independent review](../workflows/review-and-validation.md). [source:cli-reference]
 
 | # / rule | Why | Example | Failure → recovery |
 | --- | --- | --- | --- |
@@ -25,4 +25,4 @@ Each rule has an explicit **why**, a catalog example, a failure signal and a rec
 | 19 Controls aren't a sandbox | CLI grants/hooks can't confine OS | Independent CI and actual VM isolation for hostile input | Dispatcher fails open → independent gate blocks publish |
 | 20 Separate hosting and approvals | GitLab MR and GitHub cloud PR have different effects | Verify GitLab project; human approves push then draft MR | Wrong host or fake MR URL → stop and report no publication |
 
-Apply rules 1–9 in [first hour](../start/first-hour.md); use the remaining rules only when the corresponding external capability is actually needed. No table row asserts authenticated runtime verification.
+Apply only the rules relevant to your current task; [first hour](../start/first-hour.md) is optional known-result practice. No table row asserts authenticated runtime verification.

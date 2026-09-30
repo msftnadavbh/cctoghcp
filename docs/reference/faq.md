@@ -2,7 +2,7 @@
 
 **Must I host on GitHub?** No. Local Copilot usage and GitLab source/CI are distinct from GitHub-only cloud delegation. [Hosting boundaries](../hosting/capability-boundaries.md).
 
-**Must I delete `CLAUDE.md`?** No. Keep it in the first lab; verify actual instruction attachment in any later CLI session. [Coexistence](../migration/coexistence.md).
+**Must I delete `CLAUDE.md` or copy a lab?** No. Start in [your own checkout](../start/use-copilot-in-your-repository.md), keep its guidance and verify actual attachment. Python practice is optional. [Compatibility](../migration/compatibility.md).
 
 **Is planning a read-only sandbox?** No. Use permission/tool and OS controls independently. [Planning](../workflows/planning.md).
 

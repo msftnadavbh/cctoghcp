@@ -33,7 +33,7 @@ def validate_rows(rows, sources):
 def render(rows, name):
     a, b, c = OUTPUTS[name]
     lines = [f"# {name.removesuffix('.md').replace('-', ' ').title()}", "",
-              "Find the familiar task, try the Copilot action, then check the difference before approving tools. Start with the [hands-on lesson](../start/first-15-minutes.md).",
+              "Find the familiar task, try the Copilot action, then check the difference before approving tools. Start in [your own repository](../start/use-copilot-in-your-repository.md).",
              "", f"| {a} | {b} | {c} |", "| --- | --- | --- |"]
     for row in rows:
         if name == "cli-cheat-sheet.md" and row["classification"] in {

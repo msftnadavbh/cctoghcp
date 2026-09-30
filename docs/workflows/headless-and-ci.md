@@ -1,6 +1,6 @@
 # Headless/CI: structurally valid is not task complete
 
-**Advanced POSIX workflow only.** The commands below describe the existing automation helper, not native Windows PowerShell or macOS first-lesson setup. Use [first 15 minutes](../start/first-15-minutes.md) for a cross-platform interactive lab and `practice.py` checks. A dry run is not an authenticated Copilot task.
+**Advanced POSIX helper examples.** The commands below describe this repository's optional automation helper, not a prerequisite for Copilot CLI. Start in [your existing repository](../start/use-copilot-in-your-repository.md) for native PowerShell or macOS interactive use. A dry run is not an authenticated Copilot task.
 
 Claude Code's text/json/stream-json is **not** Copilot `--output-format json` JSONL. Installed help documents `-p 'prompt'` for a noninteractive task, but this repo's [headless wrapper](../../scripts/headless.py) sends reviewed file bytes on stdin **without `-p`**. Whether the real CLI accepts those bytes and what event types it emits has **not** been tested. Never assume Claude `-p` + stdin translates directly, or that a fake event with `type=result` models Copilot success. Unknown typed JSONL events remain private; even exit 0 and structurally complete JSON lines do not establish task completion. SDK-backed integration is optional if a human-validated CLI wrapper proves insufficient for lifecycle/events. [source:programmatic-reference]
 

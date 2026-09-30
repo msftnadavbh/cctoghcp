@@ -1,14 +1,14 @@
 # Troubleshooting: 21 stops and recoveries
 
-Use diagnostics **before** granting another permission or reinstalling. For the native practice, use the PowerShell 7+ / macOS zsh commands in [first 15 minutes](../start/first-15-minutes.md); `practice.py` requires Python 3.12+. Do not delete personal Copilot state as a default remedy or paste credentials/session logs into a report. [source:cli-reference]
+Use diagnostics **before** granting another permission or reinstalling. Start with [your existing checkout](../start/use-copilot-in-your-repository.md); the separate [optional practice](../start/first-15-minutes.md) uses `practice.py` and requires Python 3.12+. Do not delete personal Copilot state as a default remedy or paste credentials/session logs into a report. [source:cli-reference]
 
 | Symptom | Diagnostic / interpretation | Recovery and verification |
 | --- | --- | --- |
-| 1 `copilot` not found | Check `copilot --version` in your shell | Follow the [platform install steps](../../README.md#start-on-your-machine), then open a new shell and recheck; the lab works offline without login |
+| 1 `copilot` not found | Check `copilot --version` in your shell | Follow the [platform install steps](../start/use-copilot-in-your-repository.md#open-your-checkout), then open a new shell and recheck; optional practice checks work offline without login |
 | 2 Login or entitlement fails | `copilot login` OAuth/browser/device, org policy, token type separate from GitLab | Check own entitlement and [auth boundary](../hosting/capability-boundaries.md) outside transcript; never try random token strings or classic `ghp_` |
 | 3 GitLab read fails | `glab` absent, wrong host/project, job not in pipeline | Run bridge **dry plan** with `--hostname gitlab.example.com --project group/project --pipeline 12345 --job 67890`; review IDs then request authorized GET, no auto-retry |
 | 4 `gh agent-task` absent | Observed gh 2.45.0 below public-preview >=2.80 | Continue local work; don't claim cloud task submitted; check gh version/entitlement if using a GitHub-hosted target |
-| 5 Instructions not attached | The `--with-config` lab includes `CLAUDE.md`; bare setup does not | Check `/env`, `/instructions`, cwd and restart/resume; compare matching vs nonmatching paths afterward |
+| 5 Instructions not attached | Confirm your checkout's `CLAUDE.md` exists and its imports are reviewed | Check `/env`, `/instructions`, cwd and restart/resume; compare matching vs nonmatching paths afterward |
 | 6 Contradictory instructions | Two root/nested files may both load; no universal priority | Inspect both and remove contradiction from reviewed sources, then verify effective attachment; don't add third copy |
 | 7 `@` import missing | Unsupported GEMINI/path-instructions import or absolute/`~` escape | Use repository-relative import within supported boundary; recheck after restart without disclosing home |
 | 8 Custom subagent misses repo policy | `include-custom-instructions` default differs for subagent/main selection | Review definition and set explicit true **only if required**; verify effective `/env` and task outcome |
