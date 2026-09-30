@@ -246,7 +246,10 @@ def static_checks(root=ROOT):
     exceptions = json_load(read_regular(root / "evidence/validation-exceptions.json"))
     for path in files(root):
         relative = path.relative_to(root).as_posix()
-        raw = read_regular(path, 1024 * 1024)
+        image_asset = relative.startswith("assets/") and path.suffix == ".png"
+        raw = read_regular(path, (5 if image_asset else 1) * 1024 * 1024)
+        if image_asset and not raw.startswith(b"\x89PNG\r\n\x1a\n"):
+            raise ValueError("invalid PNG asset signature")
         if relative.startswith(("labs/sample-app/", "labs/fixtures/", "examples/")) and not gate([path]):
             raise ValueError("independent secret gate rejected distributable fixture")
         if path.suffix == ".json":

@@ -1,3 +1,5 @@
+![Claude Code to GitHub Copilot banner with Copilot Octocat](assets/claude-code-to-github-copilot-banner.png)
+
 # Claude Code → GitHub Copilot
 
 A practical transition guide for experienced Claude Code users working in **their own existing repository**. Keep the guidance and skills you already trust; learn where Copilot CLI behaves differently before approving changes. A local GitLab or GitHub checkout works for the core workflow. Copilot calls require an entitled account and network access; GitHub repository hosting is not required.
