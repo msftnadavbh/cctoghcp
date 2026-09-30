@@ -243,7 +243,7 @@ class PracticeTests(unittest.TestCase):
         (self.lab / "CLAUDE.md").write_bytes(b"changed config\n")
         (self.lab / "added.py").write_bytes(b"raise RuntimeError('must never execute')\n")
         (self.lab / "invalid-utf8.bin").write_bytes(b"\xff\xfe")
-        (self.lab / "nul.bin").write_bytes(b"hidden\x00payload")
+        (self.lab / "null-byte.bin").write_bytes(b"hidden\x00payload")
         output = io.StringIO()
         with contextlib.redirect_stdout(output), patch.object(subprocess, "Popen", side_effect=AssertionError):
             self.assertTrue(practice.diff(self.lab))
@@ -259,6 +259,18 @@ class PracticeTests(unittest.TestCase):
         (self.lab / "big").write_bytes(b"x" * (practice.LIMIT + 1))
         with self.assertRaises(ValueError):
             practice.tree(self.lab)
+
+    def test_diff_displays_crlf_source_without_hiding_bare_carriage_returns(self):
+        practice.setup(self.lab, "baseline", True)
+        path = self.lab / "src/catalog.py"
+        source = path.read_bytes().replace(b"\r\n", b"\n").replace(practice.GUARD, practice.BROKEN_GUARD)
+        path.write_bytes(source.replace(b"\n", b"\r\n"))
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            self.assertTrue(practice.diff(self.lab))
+        self.assertIn(practice.BROKEN_GUARD.decode(), output.getvalue())
+        self.assertNotIn("Binary content differs", output.getvalue())
+        self.assertNotIn("\r", output.getvalue())
 
     def test_diff_escapes_invisible_filenames_and_omits_control_content(self):
         practice.setup(self.lab, "baseline", True)

@@ -159,7 +159,7 @@ def diff(root):
                  any(unicodedata.category(c) in {"Cc", "Cf"} for c in name) else name)
         print(f"{'added' if before is None else 'deleted' if after is None else 'changed'}: {label}")
         try:
-            texts = [(data or b"").decode("utf-8") for data in (before, after)]
+            texts = [(data or b"").decode("utf-8").replace("\r\n", "\n") for data in (before, after)]
             if any(unicodedata.category(c) in {"Cc", "Cf"} and c not in "\t\n"
                    for text in texts for c in text):
                 raise ValueError("binary content")
