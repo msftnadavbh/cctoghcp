@@ -16,4 +16,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** ask for preconditions above. **Checkpoint:** no automation run. **Verification:** manual diff and check. **Permissions:** no headless grant. **External effects:** optional credits only. **Escape:** stop on unverified event schema. **Claude analogy:** output formats differ. [source:programmatic-reference]
+**Prompt:** ask for preconditions above. **Checkpoint:** no automation run. **Verification:** manual diff and check. **Permissions:** no headless grant. **External effects:** optional credits only. **Escape:** stop on unverified event schema. **Claude analogy:** output formats differ.

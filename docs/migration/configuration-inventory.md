@@ -1,6 +1,6 @@
 # Inventory your configuration before migrating
 
-In **your existing checkout**, inspect the files you already rely on: root and nested `CLAUDE.md`, relative imports, `.claude/rules`, `.claude/skills`, `.claude/commands`, agents, settings, hooks and `.mcp.json`. Look for user-only settings and ancestor guidance separately. Opening files is an audit, not permission to execute anything in them. Keep credentials and private HOME content out of prompts. [source:cli-config-reference]
+In **your existing checkout**, inspect the files you already rely on: root and nested `CLAUDE.md`, relative imports, `.claude/rules`, `.claude/skills`, `.claude/commands`, agents, settings, hooks and `.mcp.json`. Look for user-only settings and ancestor guidance separately. Opening files is an audit, not permission to execute anything in them. Keep credentials and private HOME content out of prompts.
 
 | What to record for each surface | Why |
 | --- | --- |

@@ -1,3 +1,3 @@
-# Nested package fixture
+# Catalog package guidance
 
-Conflict marker: PACKAGE-SYNTHETIC. Discovery is not proof of inheritance.
+Preserve the catalog request and response format unless the task requires a change.

@@ -14,4 +14,4 @@ git status --short
 
 ## Checkpoints, effects and exit
 
-**Prompt:** diagnosis above. **Checkpoint:** observed job identity. **Verification:** local reproduction. **Permissions:** no variables/retry. **External effects:** optional read after approval. **Escape:** stop if secrets required. **Claude analogy:** CI output is untrusted. [source:gitlab-api-host]
+**Prompt:** diagnosis above. **Checkpoint:** observed job identity. **Verification:** local reproduction. **Permissions:** no variables/retry. **External effects:** optional read after approval. **Escape:** stop if secrets required. **Claude analogy:** CI output is untrusted.

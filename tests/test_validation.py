@@ -1,4 +1,5 @@
 import io
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -32,7 +33,8 @@ class ValidationTests(unittest.TestCase):
             path.write_text("# Index\n\n[ok](target.md#same-1)\n\n[link][ref]\n\n[ref]: target.md#target\n")
             markdown(path, root)
             for text in ("[bad](target.md#missing)\n", "[bad](missing.md)\n", "[bad](../escape.md)\n",
-                         "[bad][missing]\n", "# Heading \n", "```python\npass\n", "[source:unknown]\n"):
+                          "[bad][missing]\n", "# Heading \n", "```python\npass\n",
+                          "[" + "source:internal]\n", "[" + "claim:internal]\n"):
                 path.write_text(text)
                 with self.subTest(text=text), self.assertRaises(ValueError):
                     markdown(path, root)
@@ -51,6 +53,14 @@ class ValidationTests(unittest.TestCase):
             self.assertEqual(len(bundle.namelist()), 4)
             self.assertIn("plugin.json", bundle.namelist())
             self.assertFalse(any("hooks" in name or "mcp" in name for name in bundle.namelist()))
+
+    def test_banner_and_readme_opening(self):
+        banner = ROOT / "assets/claude-code-to-github-copilot-banner.png"
+        self.assertEqual(hashlib.sha256(banner.read_bytes()).hexdigest(),
+                         "a2c13ff14d86c870436f2fc26747c8d63d685d10ec78248770b3e7189561649c")
+        self.assertEqual((ROOT / "README.md").read_text(encoding="utf-8").splitlines()[:3], [
+            "![Claude Code to GitHub Copilot banner with Copilot Octocat](assets/claude-code-to-github-copilot-banner.png)",
+            "", "# Claude Code → GitHub Copilot"])
 
     def test_negative_config_and_evidence_contracts(self):
         for config in ({}, {"version": True, "hooks": {}}, {"version": 1, "hooks": {"preToolUse": {}}},
@@ -78,6 +88,22 @@ class ValidationTests(unittest.TestCase):
         with patch("scripts.validate.read_regular", side_effect=changed), self.assertRaisesRegex(ValueError, "^unknown evidence source$"):
             static_checks()
         with patch("scripts.validate.archive", side_effect=[b"first", b"second"]), self.assertRaisesRegex(ValueError, "^nondeterministic plugin$"):
+            static_checks()
+
+    def test_unlisted_example_activation_placeholder_rejected(self):
+        from scripts.safety import read_regular
+        from scripts.secret_gate import gate
+        from scripts.validate import files
+
+        example = ROOT / "examples/unlisted.json"
+
+        def injected(path, *args, **kwargs):
+            return b'{"path":"/REVIEW/unlisted"}' if Path(path) == example else read_regular(path, *args, **kwargs)
+
+        with patch("scripts.validate.files", side_effect=lambda root: [*files(root), example]), \
+                patch("scripts.validate.read_regular", side_effect=injected), \
+                patch("scripts.validate.gate", side_effect=lambda paths: True if paths == [example] else gate(paths)), \
+                self.assertRaisesRegex(ValueError, "^unreviewed activation placeholder$"):
             static_checks()
 
     def test_scenario_contract_rejects_missing_field(self):

@@ -97,4 +97,4 @@ python -I -B (Join-Path $Lab 'src/catalog.py') --in-stock true --offset 1 --limi
 python3 -I -B "$Lab/src/catalog.py" --in-stock true --offset 1 --limit 1
 ```
 
-Both checks should exit 0. The CLI should output JSON with `total: 2` and the single second in-stock product (`sku: "C3"`). If it does not, inspect the failing assertion and code rather than broadening access. Write down changed paths, actual exits, permissions and unresolved decisions; use `copilot --resume` to choose a session and verify the lab before continuing. The lab has no Git remote: [first real feature](first-real-feature.md) shows how to transfer **reviewed** work to an authorized checkout, not how to publish the lab.
+Both checks should exit 0. The CLI should output JSON with `total: 2` and the single second in-stock product (`sku: "C3"`). If it does not, inspect the failing assertion and code rather than broadening access. Record changed paths, test results and the next step before resuming later. To apply the workflow to real work, follow [your first feature in an existing checkout](first-real-feature.md); keep that project's code and configuration rather than copying the practice app.

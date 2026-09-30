@@ -16,4 +16,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** pure serializer above. **Checkpoint:** review full diff. **Verification:** refactor check exits 0 before and after. **Permissions:** two editable files. **External effects:** lab edit and credits. **Escape:** revert owned regression. **Claude analogy:** preserve observed behavior. [source:cli-reference]
+**Prompt:** pure serializer above. **Checkpoint:** review full diff. **Verification:** refactor check exits 0 before and after. **Permissions:** two editable files. **External effects:** lab edit and credits. **Escape:** revert owned regression. **Claude analogy:** preserve observed behavior.

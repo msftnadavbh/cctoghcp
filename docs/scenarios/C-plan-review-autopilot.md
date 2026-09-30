@@ -16,4 +16,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** bounded task above. **Checkpoint:** inspected diff. **Verification:** two passing checks after review. **Permissions:** manual edits only. **External effects:** credits and lab edits. **Escape:** stop on new paths. **Claude analogy:** autonomy and permission are separate. [source:cli-reference]
+**Prompt:** bounded task above. **Checkpoint:** inspected diff. **Verification:** two passing checks after review. **Permissions:** manual edits only. **External effects:** credits and lab edits. **Escape:** stop on new paths. **Claude analogy:** autonomy and permission are separate.

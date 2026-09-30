@@ -16,4 +16,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** plan as above. **Checkpoint:** reviewed contract. **Verification:** in-stock initially exits 1. **Permissions:** read tools. **External effects:** optional credits. **Escape:** stop on unrelated scope. **Claude analogy:** plan review is separate from implementation. [source:cli-reference]
+**Prompt:** plan as above. **Checkpoint:** reviewed contract. **Verification:** in-stock initially exits 1. **Permissions:** read tools. **External effects:** optional credits. **Escape:** stop on unrelated scope. **Claude analogy:** plan review is separate from implementation.

@@ -14,4 +14,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** request skill as above. **Checkpoint:** inspect discovery. **Verification:** check remains failing before fix. **Permissions:** read tools. **External effects:** optional credits. **Escape:** don't install a plugin to force discovery. **Claude analogy:** reuse project skills. [source:plugin-reference]
+**Prompt:** request skill as above. **Checkpoint:** inspect discovery. **Verification:** check remains failing before fix. **Permissions:** read tools. **External effects:** optional credits. **Escape:** don't install a plugin to force discovery. **Claude analogy:** reuse project skills.

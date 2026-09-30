@@ -14,4 +14,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** compare hooks above. **Checkpoint:** no registration. **Verification:** independent practice check. **Permissions:** read tools. **External effects:** optional credits. **Escape:** stop on activation request. **Claude analogy:** hooks don't replace validation. [source:hooks-reference]
+**Prompt:** compare hooks above. **Checkpoint:** no registration. **Verification:** independent practice check. **Permissions:** read tools. **External effects:** optional credits. **Escape:** stop on activation request. **Claude analogy:** hooks don't replace validation.

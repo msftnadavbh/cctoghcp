@@ -14,4 +14,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** repair shared guard above. **Checkpoint:** inspect all diffs. **Verification:** validation exits 0. **Permissions:** reviewed edit only. **External effects:** local edits and optional credits. **Escape:** stop on unexpected path. **Claude analogy:** debug the root cause. [source:cli-reference]
+**Prompt:** repair shared guard above. **Checkpoint:** inspect all diffs. **Verification:** validation exits 0. **Permissions:** reviewed edit only. **External effects:** local edits and optional credits. **Escape:** stop on unexpected path. **Claude analogy:** debug the root cause.

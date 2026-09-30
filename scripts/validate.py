@@ -78,11 +78,13 @@ def anchors(text):
     return result
 
 
-def markdown(path, root, source_ids=frozenset(), claim_ids=frozenset()):
+def markdown(path, root):
     text = read_regular(path).decode()
     if not text.endswith("\n") or "\t" in text or any(line.rstrip() != line for line in text.splitlines()):
         raise ValueError("markdown formatting")
     meta, body = frontmatter(text)
+    if re.search(r"\[(?:source|claim):[^\]]+\]", body):
+        raise ValueError("internal reference marker in markdown")
     if path.name.endswith(".agent.md") or path.parent.name == "agents":
         if not {"name", "description", "tools"} <= meta.keys() or meta["tools"] != ["view", "grep", "glob"]:
             raise ValueError("agent contract")
@@ -116,12 +118,6 @@ def markdown(path, root, source_ids=frozenset(), claim_ids=frozenset()):
         if parsed.fragment and linked.suffix == ".md":
             if unquote(parsed.fragment) not in anchors(read_regular(linked).decode()):
                 raise ValueError("missing markdown anchor")
-    for source_id in re.findall(r"\[source:([a-z0-9-]+)\]", body):
-        if source_id not in source_ids:
-            raise ValueError("unknown source id")
-    for claim_id in re.findall(r"\[claim:([a-z0-9-]+)\]", body):
-        if claim_id not in claim_ids:
-            raise ValueError("unknown claim id")
     return meta
 
 
@@ -213,7 +209,7 @@ def static_checks(root=ROOT):
         if any(f"## {heading}" not in scenario for heading in (
                 "Goal and prerequisites", "Start and deterministic check", "Checkpoints, effects and exit")) or any(
                 not re.search(r"\*\*(?:[^*]*\b)?" + term + r"\b", scenario, re.I) for term in (
-                "prompt", "checkpoint", "verification", "permissions", "external effects", "escape", "Claude analogy")) or "```sh\n" not in scenario or "[source:" not in scenario:
+                 "prompt", "checkpoint", "verification", "permissions", "external effects", "escape", "Claude analogy")) or "```sh\n" not in scenario:
             raise ValueError(f"scenario contract missing: {name}")
     data = {}
     required = {"sources": {"id", "url", "retrieved", "kind", "note"},
@@ -227,7 +223,6 @@ def static_checks(root=ROOT):
             raise ValueError("evidence contract")
         data[name] = value
     sources = {s["id"] for s in data["sources"]}
-    claims = {c["id"] for c in data["claims"]}
     for name in ("claims", "compatibility-cases"):
         if any(set(item["source_ids"]) - sources for item in data[name]):
             raise ValueError("unknown evidence source")
@@ -258,15 +253,19 @@ def static_checks(root=ROOT):
             if not isinstance(yaml_load(raw.decode()), dict):
                 raise ValueError("configuration must be an object")
         if path.suffix == ".md":
-            markdown(path, root, sources, claims)
+            markdown(path, root)
             text = raw.decode()
             if re.search(r"\b(?:TODO|TBD|FIXME)\b", text) and relative not in exceptions["placeholder_paths"]:
                 raise ValueError("unreviewed documentation placeholder")
-            for claim in data["claims"]:
-                if claim["preview"] and f'[claim:{claim["id"]}]' in text and "preview" not in text.lower():
-                    raise ValueError("missing preview label")
         if relative.startswith("examples/") and b"/REVIEW/" in raw and relative not in exceptions["placeholder_paths"]:
             raise ValueError("unreviewed activation placeholder")
+    for claim in data["claims"]:
+        for used_by in claim.get("used_by", []):
+            target = safe_path(root / used_by)
+            if not target.is_relative_to(root) or not target.is_file():
+                raise ValueError("missing claim usage")
+            if claim["preview"] and "preview" not in read_regular(target).decode().lower():
+                raise ValueError("missing preview label")
     for forbidden in (".github/hooks", ".mcp.json", ".claude/settings.json", ".claude/settings.local.json", ".github/copilot/settings.json"):
         if (root / forbidden).exists():
             raise ValueError("unexpected root activation")

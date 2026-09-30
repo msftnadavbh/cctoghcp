@@ -1,3 +1,3 @@
-# Directory compatibility fixture
+# Catalog directory guidance
 
-Conflict marker: DIRECTORY-SYNTHETIC. Do not infer precedence from discovery.
+Keep catalog changes within the requested files and check their callers.

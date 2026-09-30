@@ -14,4 +14,4 @@ git status --short
 
 ## Checkpoints, effects and exit
 
-**Prompt:** propose an MR title above. **Checkpoint:** host and branch verified. **Verification:** real project tests. **Permissions:** remote writes need approvals. **External effects:** commit/push/MR only with consent. **Escape:** stop on wrong host. **Claude analogy:** local work need not move hosts. [source:gitlab-mr-create]
+**Prompt:** propose an MR title above. **Checkpoint:** host and branch verified. **Verification:** real project tests. **Permissions:** remote writes need approvals. **External effects:** commit/push/MR only with consent. **Escape:** stop on wrong host. **Claude analogy:** local work need not move hosts.

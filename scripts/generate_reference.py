@@ -1,4 +1,4 @@
-"""Render compact reference tables from the reviewed migration matrix; --check is read-only."""
+"""Render compact reference tables from the migration matrix; --check is read-only."""
 import argparse
 import json
 from pathlib import Path
@@ -32,7 +32,8 @@ def validate_rows(rows, sources):
 
 def render(rows, name):
     a, b, c = OUTPUTS[name]
-    lines = [f"# {name.removesuffix('.md').replace('-', ' ').title()}", "",
+    title = "CLI Cheat Sheet" if name == "cli-cheat-sheet.md" else "Muscle Memory"
+    lines = [f"# {title}", "",
               "Find the familiar task, try the Copilot action, then check the difference before approving tools. Start in [your own repository](../start/use-copilot-in-your-repository.md).",
              "", f"| {a} | {b} | {c} |", "| --- | --- | --- |"]
     for row in rows:

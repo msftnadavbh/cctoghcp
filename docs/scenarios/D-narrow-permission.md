@@ -14,4 +14,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** propose without edits. **Checkpoint:** no changed files. **Verification:** check still fails. **Permissions:** read tools. **External effects:** optional credits. **Escape:** don't broaden denied tools. **Claude analogy:** least privilege, different controls. [source:cli-reference]
+**Prompt:** propose without edits. **Checkpoint:** no changed files. **Verification:** check still fails. **Permissions:** read tools. **External effects:** optional credits. **Escape:** don't broaden denied tools. **Claude analogy:** least privilege, different controls.

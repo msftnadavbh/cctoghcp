@@ -14,4 +14,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** three read tasks above. **Checkpoint:** reconcile reports. **Verification:** no edits before integration. **Permissions:** read tools. **External effects:** parallel credits. **Escape:** serialize uncertain work. **Claude analogy:** teams need one editor. [source:cli-reference]
+**Prompt:** three read tasks above. **Checkpoint:** reconcile reports. **Verification:** no edits before integration. **Permissions:** read tools. **External effects:** parallel credits. **Escape:** serialize uncertain work. **Claude analogy:** teams need one editor.

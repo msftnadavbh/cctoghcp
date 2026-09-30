@@ -1,8 +1,8 @@
 [
-  {"id":"root-import","fixture":"examples/coexistence/CLAUDE.md","status":"fixture-only","source_ids":["cli-reference"],"expected":"Inspect root CLAUDE and relative import; do not infer precedence."},
-  {"id":"directory-claude","fixture":"examples/coexistence/.claude/CLAUDE.md","status":"fixture-only","source_ids":["cli-reference"],"expected":"Compare discovery with actual attachment separately."},
-  {"id":"scoped-rules","fixture":"examples/coexistence/.claude/rules/catalog.md","status":"source-reviewed","source_ids":["release-1-0-89"],"expected":"Supported source location as of v1.0.89; exact scope unresolved."},
-  {"id":"nested-conflict","fixture":"examples/coexistence/packages/catalog/CLAUDE.md","status":"fixture-only","source_ids":["cli-reference"],"expected":"Record attached instructions and conflict outcome only with runtime evidence."},
+  {"id":"root-import","fixture":"examples/coexistence/CLAUDE.md","status":"fixture-only","source_ids":["cli-reference"],"expected":"Check root CLAUDE.md and its repository-relative import with /instructions."},
+  {"id":"directory-claude","fixture":"examples/coexistence/.claude/CLAUDE.md","status":"fixture-only","source_ids":["cli-reference"],"expected":"Check which directory guidance attaches for your target path."},
+  {"id":"scoped-rules","fixture":"examples/coexistence/.claude/rules/catalog.md","status":"source-reviewed","source_ids":["release-1-0-89"],"expected":"Supported from v1.0.89; check matching paths with /instructions."},
+  {"id":"nested-conflict","fixture":"examples/coexistence/packages/catalog/CLAUDE.md","status":"fixture-only","source_ids":["cli-reference"],"expected":"Compare actual attachment and reconcile conflicts before use."},
   {"id":"path-instructions","fixture":"examples/coexistence/.github/instructions/catalog.instructions.md","status":"fixture-only","source_ids":["cli-reference"],"expected":"Inspect matching and nonmatching files separately."},
   {"id":"no-inheritance","fixture":"examples/agents/no-inheritance.agent.md","status":"fixture-only","source_ids":["cli-reference"],"expected":"Explicit include-custom-instructions false counterexample."}
 ]

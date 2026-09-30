@@ -1,27 +1,21 @@
-# Native practice: platform support and verification
+# Native practice: platforms and limits
 
-The native lab was executed on Windows and macOS in [CI run 36757869730](https://github.com/msftnadavbh/cctoghcp/actions/runs/36757869730)
-at commit `f733c84e44ad940f039b01ae1f32ea1ac99c7043` on September 30, 2026.
-The Windows job used Windows Server 2025, PowerShell 7 and Python 3.12.10;
-all 17 practice tests, three app tests and the first-lesson shell smoke check passed.
-The macOS job used macOS 26.6.2 arm64, zsh and Python 3.12.10; 16 practice tests
-passed with the Windows-only junction test skipped, plus three app tests and
-the first-lesson shell smoke check passed. Ubuntu ran the full suite: 67 passed,
-one Windows-only skip, three app tests and independent baseline acceptance passed.
-See [machine-readable results](../../results/native-platform.json).
+Use Python 3.12+ with PowerShell 7+ on Windows or Terminal zsh on macOS. The
+[first lesson](../start/first-15-minutes.md) provides shell-specific commands.
+The native practice is stdlib-only; full repository validation additionally
+requires [validator dependencies](../../requirements-validation.txt).
 
-These are hosted-runner results, not tests of every desktop installation.
-Microsoft Store Python, OneDrive and authenticated Copilot interactions were not
-tested. Cloud-managed/reparse directories are refused by design. The independent
-security review covered the portable launcher before publication; native CI then
-caught a CRLF diff issue and a Windows-reserved test filename, both fixed before
-the successful run. The first-lesson smoke check uses a known canonical repair,
-not a model-generated answer.
+The practice passed on Windows Server 2025 (PowerShell 7, Python 3.12.10) and
+macOS 26.6.2 arm64 (zsh, Python 3.12.10) in
+[CI run 36757869730](https://github.com/msftnadavbh/cctoghcp/actions/runs/36757869730).
+The run also checked the first lesson's failing baseline, diff and repaired
+check. [Dated test counts](../../results/native-platform.json) identify the
+revision and the Windows-only junction-test skip on macOS. These hosted runs
+do not cover Microsoft Store Python or authenticated Copilot use.
 
-## Commands and first-lesson outcomes
+## Practice commands
 
-Use a trusted absolute path to `scripts/practice.py` and Python 3.12 or newer.
-All commands work independently of cwd; invoke with isolation and no bytecode:
+From any working directory, use the absolute path to your trusted book copy:
 
 ```text
 python -I -B BOOK/scripts/practice.py setup LAB --exercise validation --with-config
@@ -29,150 +23,49 @@ python -I -B BOOK/scripts/practice.py diff LAB
 python -I -B BOOK/scripts/practice.py check LAB --exercise validation
 ```
 
-`BOOK` and `LAB` above are placeholders, not literal paths. Quote paths containing
-spaces. In PowerShell use `python` with a quoted script path (or `&` before a
-quoted absolute Python executable). In zsh, use the installed Python 3.12+
-executable, commonly `python3`. Windows PowerShell 5 is not the supported shell.
+Replace `BOOK` and `LAB` and quote paths with spaces. Use `python` in PowerShell
+or your installed Python 3.12+ executable (usually `python3`) in zsh. For a
+quoted Python executable in PowerShell, prefix the command with `&`.
 
-- `setup`: exit 0, prints `Practice lab created: PATH`. Default exercise is
-  `validation`; explicit choices are `validation`, `baseline`, `in-stock`,
-  `refactor`. No config is copied unless `--with-config` is supplied.
-- `diff`: exit 0 whether differences exist or not; exit 2 for refusal. It prints
-  added/deleted/changed paths and UTF-8 text unified diffs without running lab code.
-  Binary content (invalid UTF-8 or control/format characters other than tab/newlines)
-  gets a byte-count summary, not replacement characters or raw binary output.
-  Filename control/format characters are escaped in displayed paths. A byte-count
-  summary requires separate inspection before executing that lab file.
-  It compares against the fixed canonical app plus all six optional config
-  assets. Without config, the six missing configs appear as deletions. This is
-  intentionally stateless: even deletion of all six configs remains visible.
-- `check`: exit 0 only when app tests and independent acceptance both pass;
-  exit 1 for observed test/acceptance failure; exit 2 for invalid paths, options,
-  missing files, modified checker, or other refused operations.
-- Initial validation check is an **expected exit 1**, not a setup failure. The
-  app runs three tests; boolean validation subtests fail. Independent acceptance
-  includes `validation fails: boolean value accepted or wrong rejection`.
-- Fix the single guard in `src/catalog.py` from `not isinstance(value, int)` to
-  `type(value) is not int`. Check then exits 0 and prints
-  `Independent acceptance passed: validation`. With unchanged copied config,
-  diff prints `No differences from canonical files (the canonical validation
-  bug is already fixed).` Diff is against the fixed source, not the broken setup.
-- Baseline and refactor initially pass. In-stock initially fails until its API
-  and CLI feature is implemented. Its oracle checks typed filtering, combined
-  query/stock filtering, pagination, totals, invalid inputs, and CLI behavior.
+- `setup` creates a new lab; it never overwrites. Exercises are `validation`
+  (default), `baseline`, `in-stock` and `refactor`. `--with-config` copies
+  `CLAUDE.md`, its import, three skills and one agent; no hooks, MCP, plugins,
+  credentials or Git remote are copied.
+- `diff` displays added, changed and deleted files without running them. Exit 0
+  does not mean the files match. Binary/control content is summarized by byte
+  count: inspect it separately before executing it. Without `--with-config`,
+  the six optional config files appear as deletions against the canonical copy.
+- `check` runs the app tests and separate acceptance checks. Exit 0 passes;
+  exit 1 means a failing check; exit 2 means a refused path, modified checker
+  or invalid input. A new `validation` lab **should fail** its first check (exit 1).
+  Fix `src/catalog.py` to reject boolean inputs to `integer()`, inspect the
+  diff, then check again. `baseline` and `refactor` start passing; `in-stock`
+  needs its feature implemented to pass.
 
-## Files, paths, and retained results
+## Paths and execution
 
-Setup creates only `src/catalog.py`, `tests/test_catalog.py`, and
-`scripts/check_lab.py`. Config adds the six exact byte-copied assets defined by
-`CONFIG_ASSETS` in [scripts/lab.py](../../scripts/lab.py): `CLAUDE.md`,
-`guidance/shared.md`, the repository-reviewer agent, and three skills. The
-`CLAUDE.md` import target is included. No cache, whole test tree, ownership state,
-Git metadata, hooks, MCP settings, plugins, credentials, or model activation is
-copied. Canonical files are read only. Validation changes exactly one byte-string
-guard occurrence; an unexpected canonical guard count refuses setup.
+Both book and lab must be ordinary local directories: OneDrive and other
+cloud-managed/reparse directories, symlinks and junctions are unsupported.
+Check for redirected Documents folders. The lab's parent must exist; the lab
+itself must not exist or contain the book. Windows UNC/device, drive-relative,
+root-relative, alternate-stream and reserved-name paths are refused. Use a
+normal absolute Windows path without a trailing separator; on macOS use a
+physical path rather than a symlink alias such as `/var`. Failed setup can
+leave a partial copy: inspect it and choose a new name. There is no automatic
+cleanup or overwrite command.
 
-Both the book checkout and the lab must be ordinary local directories, not
-OneDrive, other cloud-managed folders, symlink paths or Windows junctions. All
-Windows reparse points remain refused; OneDrive is not supported. Check the
-actual checkout location: Documents may be redirected even when HOME is local.
+Diff and check refuse links and nonregular files. The lab is bounded to 1,000
+entries, 256 KiB per file and 8 MiB of file data. Diff is **not** a secret
+redactor. Each check prints `Check artifacts retained: PATH` for a new
+`checkpoint-practice-*` directory in the OS temporary directory. Inspect
+private output, stop remaining child processes, then remove that exact
+directory manually. Do not publish captures without inspection.
 
-The destination must not exist, its parent must exist, and it must be outside
-the book, not the book or an ancestor. Ordinary local absolute or relative paths
-are supported, including spaces and Unicode. Parent traversal, symlink ancestors
-or leaves, Windows reparse points/junctions, UNC/device paths, drive-relative or
-root-relative Windows paths, alternate data streams, reserved names, trailing
-dots/spaces, and other ambiguous Windows spellings are refused. Use absolute
-Windows paths without a trailing separator, as in the first lesson. Existing
-directory identities are also compared to reject aliases of the book or its
-ancestors (including case aliases and Windows short names). On macOS, avoid
-symlink aliases such as `/var` when supplying a path; use the physical path or an
-ordinary directory under your home. Setup errors retain any partial copy: inspect
-it manually and choose another destination name. There is no overwrite, reset,
-cleanup command, or deletion authority.
-
-Diff and check inspect the entire lab without following links. Limits are 1,000
-entries, 256 KiB per regular file, and 8 MiB total file data. Added and deleted
-files, including test and config changes, are visible to diff. Nonregular files
-and links fail closed. Diff is a local review tool, **not a secret redactor**.
-
-Each check prints `Check artifacts retained: PATH`. The path is a new
-`checkpoint-practice-*` directory in the OS temporary directory. Each child has
-a separate `probe-*` directory containing `stdin.bin`, `stdout.bin`, `stderr.bin`,
-and an initially empty `home/`. Nothing recursively deletes this child-writable
-tree. Review artifacts locally, stop any remaining descendants, then remove the
-specific directory manually. Output may contain reviewed lab test diagnostics;
-do not publish it without inspection. There is no result JSON schema.
-
-## Execution boundary and limitations
-
-Only use stable, trusted local trees and human-reviewed app/test code. This is
-not a malicious-code sandbox or a defense against a same-user filesystem race.
-The parent imports only trusted book modules, never lab code. A private observer
-uses fixed Python argv with `-I -B`, never a general shell. It verifies the lab
-checker is byte-identical to the canonical checker before execution. Modified
-tests cannot bypass independent acceptance, which runs even after test failure.
-
-Each child receives a neutral fresh cwd and fresh HOME/USERPROFILE/TMP/TEMP/TMPDIR.
-Only these redirects, LANG, NO_COLOR, and Windows SystemRoot/WINDIR (when present)
-are supplied. No inherited tokens, PATH, Python startup variables, or assistant
-configuration is forwarded. This does **not** prevent reviewed code from reading
-the host, accessing the network, writing elsewhere, or forging observations.
-
-Input is file-backed and bounded to 64 KiB. Stdout/stderr are file-backed; the
-parent reads at most 64 KiB plus one byte each after exit and returns at most
-64 KiB each. Larger output fails with `output-limit`. Disk output is not quota
-limited. Probe timeout is five seconds; the app-test child timeout is twenty
-seconds; the nested sample CLI test timeout is five seconds. Timeout kills the
-direct child only: descendant termination and disk containment are not
-guaranteed. No automatic recursive cleanup runs against child-writable scratch.
-
-Existing POSIX lab ownership/deletion helpers and POSIX runner security behavior
-are unchanged. Headless execution, GitLab automation, secret inventory, hooks,
-and MCP/plugin activation remain advanced POSIX workflows, not native practice
-features.
-
-## Verification commands and evidence
-
-```text
-python -B -m unittest discover -s tests -p test_practice.py -v
-python -I -B labs/sample-app/scripts/check_lab.py
-python -B -m scripts.validate
-```
-
-The first two are the native CI test commands (stdlib-only, no pip). Each native
-job also runs the first-lesson shell commands in PowerShell 7 or zsh, checking
-setup exit 0, broken check exit 1, diff exit 0, then copying the trusted canonical
-source as a CI-only repair and checking exit 0. No model participates. The portable
-suite includes an exact subprocess first lesson from outside the book, with
-spaces and Unicode: setup succeeds, broken check fails, diff shows the guard,
-fixed check passes. It also checks six config assets/import closure, no overwrite,
-path refusals, partial-copy retention, unchanged canonical hashes, all-file diff
-bounds, environment canaries, retained capture, checker tampering, fake tests,
-malformed/no result, timeout/output limits, and known-good feature fixtures.
-Windows lexical cases run on Linux too, but that is not native Windows evidence.
-The junction test runs only on Windows; the native symlink test skips only when
-Windows denies the symlink creation privilege.
-
-Version-guard coverage simulates Python 3.9's version tuple in a subprocess and
-checks the friendly message before project imports; it is not an older-interpreter
-execution claim. Non-timeout probe tests use five seconds; only the deliberate
-30-second sleep fixture uses a two-second timeout. CLI test subprocess temporary
-directories stay under the test-owned tree and are verified before test cleanup.
-
-Linux rerun after the display and lesson changes: portable suite 16 tests,
-15 passed and one Windows junction test skipped. Full offline validation ran
-67 tests, 66 passed and that same skip, plus three sample-app tests and
-independent baseline acceptance. Reference generation `--check` and
-`git diff --check` also passed. These are local Linux results, **not** hosted Windows or
-macOS evidence. The last command remains the Ubuntu/full-suite job and is not
-run in native jobs.
-Raw help captures use `-text` in `.gitattributes` to preserve evidence hashes;
-other files retain normal Git text handling. Copy and checker comparisons use
-checkout bytes, including any checkout line endings.
-
-Independent cross-family review and native CI have been completed for the
-portable implementation. The observations at the top of this page supersede
-the earlier Linux-only development counts below; historical test records are
-not retroactively relabeled as native results. No paid model, hook dispatcher,
-MCP connection or plugin installation was used for native verification.
+Run only trusted, human-reviewed app and test code: the checker is **not an OS
+sandbox**. Children run with fresh HOME, cwd and temporary directories and no
+inherited token or Python startup variables; code can still access the host
+or network. Output read into memory is bounded to 64 KiB per stream, but disk
+output has no quota. Timeouts stop the direct child, not necessarily its
+descendants. The checker itself must match the trusted book copy before use.
+Advanced POSIX headless, GitLab and hook/MCP helpers are not Windows/macOS
+native-practice commands.

@@ -9,7 +9,7 @@
 | Treat deny rules as sandbox | Shell/process can escape intent | Add independent isolation and CI gate |
 | Two hooks for same event | Duplicate tests/actions | Choose native or shared registration |
 | Hook as sole secret check | Timeout may fail open | Independent CI secret gate |
-| Installing a plugin from schema pass | Lifecycle unverified | Keep artifact inert pending reviewed install test |
+| Installing a plugin from schema pass | A valid manifest does not install safely | Inspect the package and installed CLI options before approving installation |
 | Loading MCP server instructions blindly | Untrusted prompt authority | Review server and explicit allowlist |
 | Pasting raw CI trace | Secret/injection risk | Lossy sanitized bridge and private original |
 | Turning GitLab MR into GitHub PR | Wrong hosting action | Use the selected host's review workflow; GitHub cloud delegation requires a GitHub-hosted target |
@@ -18,4 +18,4 @@
 | Compact without handoff | Missing decisions | Write nine-field handoff first |
 | Using `/rewind` as external rollback | Leaves remote/shell effects | Inspect effects, reverse only with approval |
 
-The antidote is a [small verified feature](../start/first-real-feature.md), not more configuration. [source:hooks-reference]
+The antidote is a [small verified feature](../start/first-real-feature.md), not more configuration.

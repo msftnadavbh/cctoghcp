@@ -4,8 +4,6 @@
   "scope": "24 entries in evidence/sources.json; not every external URL in Markdown",
   "authentication": false,
   "method": "HEAD with bounded timeout, retry and explicit redirect review",
-  "initial_result": {"http_200": 23, "moved_review": 1, "exit_status": 1},
-  "fix": "github-copilot-setup-steps redirected from the older coding-agent URL; reviewed the content and replaced it with the canonical copilot-on-github/customize-copilot/customize-cloud-agent URL",
   "final_result": {"http_200": 24, "other": 0, "exit_status": 0},
-  "limitations": ["HTTP reachability does not verify claim accuracy", "No authenticated product integration", "Sources may change after this date"]
+  "limitations": ["HTTP reachability does not verify claim accuracy", "Sources may change after this date"]
 }

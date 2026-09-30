@@ -1,6 +1,6 @@
 # Planning: review the contract before implementation
 
-Planning depth follows **uncertainty and risk**, not file count. For a small shared guard, a reproduction and one focused check may suffice. For changes across multiple callers, run `/plan` (or `copilot --plan` or Shift+Tab where supported) from [your checkout](../start/use-copilot-in-your-repository.md). Inspect the proposed `plan.md`; edit with Ctrl+Y where supported. Plan mode can still discover/request tools; it is **not** an OS read-only sandbox. [source:cli-reference]
+Planning depth follows **uncertainty and risk**, not file count. For a small shared guard, a reproduction and one focused check may suffice. For changes across multiple callers, run `/plan` (or `copilot --plan` or Shift+Tab where supported) from [your checkout](../start/use-copilot-in-your-repository.md). Inspect the proposed `plan.md`; edit with Ctrl+Y where supported. Plan mode can still discover/request tools; it is **not** an OS read-only sandbox.
 
 Ask Copilot: “Trace the callers and existing tests for [actual function or task]. Plan the smallest change, affected files, failure/acceptance cases and the test command already used by this repository. Identify assumptions and stop if behavior is ambiguous. Plan only; do not edit or run code.” Replace the bracketed text with your task. Compare citations and commands to your source/CI; don't run an invented command.
 

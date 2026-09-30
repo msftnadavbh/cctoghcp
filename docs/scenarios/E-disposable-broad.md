@@ -16,4 +16,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** ask why broad access is unnecessary. **Checkpoint:** no edits. **Verification:** initial check still fails. **Permissions:** read only in lab. **External effects:** optional credits. **Escape:** skip broad mode without isolation. **Claude analogy:** bypass needs a real external boundary. [source:cli-reference]
+**Prompt:** ask why broad access is unnecessary. **Checkpoint:** no edits. **Verification:** initial check still fails. **Permissions:** read only in lab. **External effects:** optional credits. **Escape:** skip broad mode without isolation. **Claude analogy:** bypass needs a real external boundary.

@@ -14,4 +14,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** report attachment above. **Checkpoint:** note paths. **Verification:** compare attached files, not mere presence. **Permissions:** read tools. **External effects:** credits. **Escape:** stop on contradictory policy. **Claude analogy:** retain CLAUDE.md. [source:instructions-reference]
+**Prompt:** report attachment above. **Checkpoint:** note paths. **Verification:** compare attached files, not mere presence. **Permissions:** read tools. **External effects:** credits. **Escape:** stop on contradictory policy. **Claude analogy:** retain CLAUDE.md.

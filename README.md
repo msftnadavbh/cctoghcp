@@ -76,4 +76,4 @@ A practical transition guide for experienced Claude Code users working in **thei
 | Hosting boundaries | Local Copilot use vs GitLab credentials vs GitHub cloud delegation. | [Capability boundaries](docs/hosting/capability-boundaries.md) |
 | Optional automation | Host-specific MR/PR and headless flows require separate review and authorization. | [GitLab](docs/hosting/gitlab-now.md) · [GitHub-hosted capabilities](docs/hosting/github-later.md) · [Headless and CI](docs/workflows/headless-and-ci.md) |
 
-Want a known exercise instead of your own project? [Optional practice and examples](docs/scenarios/index.md) use a separate Python lab; they are not a prerequisite. [Version and source notes](docs/reference/versions.md) distinguish documented behavior, offline checks and untested integrations.
+Want a known exercise instead of your own project? [Optional practice and examples](docs/scenarios/index.md) use a separate Python lab; they are not a prerequisite. See [command reference and platform requirements](docs/reference/versions.md).

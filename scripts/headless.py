@@ -67,7 +67,7 @@ def execute(args):
     argv = command(args.executable, args.mode)
     if not args.execute:
         return {"status": "dry-run", "mode": args.mode, "argv": argv,
-                "prompt_transport": "reviewed file bytes via stdin; real CLI untested"}
+                "prompt_transport": "file bytes via stdin; check CLI compatibility before execution"}
     if not args.consent_paid or not args.reviewed_workspace or not args.home or not args.output:
         raise ValueError("explicit paid consent, reviewed workspace, HOME and output required")
     if getattr(args, "credential_env", None) != "COPILOT_GITHUB_TOKEN":

@@ -1,11 +1,11 @@
 # Best practices: twenty operational rules
 
-Use these rules with [your own project](../start/use-copilot-in-your-repository.md). Each has a **why**, an optional catalog practice example, a failure signal and a recovery; substitute your own project's checks and paths. They are not substitutes for [independent review](../workflows/review-and-validation.md). [source:cli-reference]
+Use these rules with [your own project](../start/use-copilot-in-your-repository.md). Each has a **why**, an optional catalog practice example, a failure signal and a recovery; substitute your own project's checks and paths. They are not substitutes for [independent review](../workflows/review-and-validation.md).
 
 | # / rule | Why | Example | Failure → recovery |
 | --- | --- | --- | --- |
 | 1 Investigate callers | Shared guards are cheaper than symptom patches | Trace `integer()` through `Product`, list, request, CLI | Fix only CLI: failing API input → repair shared validator |
-| 2 Scale planning to uncertainty | Tiny change can have high external risk | `in_stock` spans three seams so review twelve-field plan | Vague plan → clarify inputs/callers/stop before edit |
+| 2 Scale planning to uncertainty | Tiny change can have high external risk | A filter spans API, CLI and tests: agree on behavior and checks first | Vague plan → clarify inputs/callers/stop before edit |
 | 3 Separate discovery from support | Inventory is path detection, not execution | `scripts.inventory .` reports config paths | “Found” interpreted as “applied” → inspect `/env` in live session |
 | 4 Require provable completion | Model text is not a test | Human-reviewed copy passes `validation` and `in-stock` oracles | Green summary/no command → execute trusted oracle after code review |
 | 5 Plan as contract | Steps without boundaries cannot be accepted | `None|bool`, before pagination, negative cases | Missing total semantics → revise plan before autopilot |
@@ -25,4 +25,4 @@ Use these rules with [your own project](../start/use-copilot-in-your-repository.
 | 19 Controls aren't a sandbox | CLI grants/hooks can't confine OS | Independent CI and actual VM isolation for hostile input | Dispatcher fails open → independent gate blocks publish |
 | 20 Separate hosting and approvals | GitLab MR and GitHub cloud PR have different effects | Verify GitLab project; human approves push then draft MR | Wrong host or fake MR URL → stop and report no publication |
 
-Apply only the rules relevant to your current task; [first hour](../start/first-hour.md) is optional known-result practice. No table row asserts authenticated runtime verification.
+Apply only the rules relevant to your current task; [first hour](../start/first-hour.md) is optional known-result practice.

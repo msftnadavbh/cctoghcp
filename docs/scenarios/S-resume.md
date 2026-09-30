@@ -14,4 +14,4 @@ copilot --resume
 
 ## Checkpoints, effects and exit
 
-**Prompt:** restate handoff above. **Checkpoint:** verify cwd and files. **Verification:** run check separately. **Permissions:** inspect grants anew. **External effects:** optional credits. **Escape:** pick correct session. **Claude analogy:** latest needn't match cwd. [source:cli-reference]
+**Prompt:** restate handoff above. **Checkpoint:** verify cwd and files. **Verification:** run check separately. **Permissions:** inspect grants anew. **External effects:** optional credits. **Escape:** pick correct session. **Claude analogy:** latest needn't match cwd.

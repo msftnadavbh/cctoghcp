@@ -16,4 +16,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** use the investigation above. **Checkpoint:** source citations. **Verification:** validation still exits 1. **Permissions:** read tools only. **External effects:** optional model credits. **Escape:** stop on unexpected tools. **Claude analogy:** Explore before edit. [source:cli-reference]
+**Prompt:** use the investigation above. **Checkpoint:** source citations. **Verification:** validation still exits 1. **Permissions:** read tools only. **External effects:** optional model credits. **Escape:** stop on unexpected tools. **Claude analogy:** Explore before edit.

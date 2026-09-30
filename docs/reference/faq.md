@@ -10,8 +10,8 @@
 
 **Does a passing validator prove Copilot runtime support?** No. It proves offline syntax and local sample behavior, not a login, paid run, dispatcher or MCP client. [Versions](versions.md).
 
-**Is JSON output Claude JSON?** No, Copilot help specifies JSONL; adapter's conservative fake-tested event profile is not a guaranteed real schema. [Headless](../workflows/headless-and-ci.md).
+**Is JSON output Claude JSON?** No. Copilot outputs JSONL; validate actual CLI events before relying on a wrapper's completion signal. [Headless](../workflows/headless-and-ci.md).
 
-**How do I clean the lab?** Use its ownership ID with `scripts.lab cleanup` and original private state. Never pass a deletion path or race edits. [First 15 minutes](../start/first-15-minutes.md).
+**How do I clean the lab?** Native `practice.py` has no cleanup command; inspect it and remove the specific directory manually. The separate POSIX `scripts.lab` uses an ownership ID with `cleanup` and original private state; never pass a deletion path or race edits. [First 15 minutes](../start/first-15-minutes.md).
 
 **Can a reviewer approve without tests?** It can critique code but cannot establish deterministic acceptance. Use external oracle and human review. [Validation](../workflows/review-and-validation.md).

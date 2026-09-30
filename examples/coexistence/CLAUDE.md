@@ -1,4 +1,4 @@
-# Root compatibility fixture
+# Catalog repository guidance
 
 @guidance/shared.md
 
@@ -8,5 +8,3 @@ stdlib-only offline operation; no dependencies, network, commits or publishing.
 After changes, hand the diff to a human before executing any generated Python.
 Use the external acceptance oracle only after that review; never call a static
 syntax check a passing behavioral test. Instructions are guidance, not a sandbox.
-
-Conflict marker: ROOT-SYNTHETIC. These fixtures test discovery, not precedence.

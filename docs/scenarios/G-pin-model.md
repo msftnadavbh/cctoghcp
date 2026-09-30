@@ -14,4 +14,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** find the shared guard above. **Checkpoint:** selected model noted. **Verification:** check still fails before repair. **Permissions:** read only. **External effects:** optional credits. **Escape:** don't force unavailable models. **Claude analogy:** selection does not certify correctness. [source:cli-reference]
+**Prompt:** find the shared guard above. **Checkpoint:** selected model noted. **Verification:** check still fails before repair. **Permissions:** read only. **External effects:** optional credits. **Escape:** don't force unavailable models. **Claude analogy:** selection does not certify correctness.

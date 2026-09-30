@@ -14,4 +14,4 @@ copilot --version
 
 ## Checkpoints, effects and exit
 
-**Prompt:** review callers above. **Checkpoint:** cited findings. **Verification:** human-run check remains authoritative. **Permissions:** read tools. **External effects:** optional credits. **Escape:** stop on write requests. **Claude analogy:** reviewer is not test runner. [source:cli-reference]
+**Prompt:** review callers above. **Checkpoint:** cited findings. **Verification:** human-run check remains authoritative. **Permissions:** read tools. **External effects:** optional credits. **Escape:** stop on write requests. **Claude analogy:** reviewer is not test runner.

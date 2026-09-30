@@ -3,7 +3,6 @@
 ---
 # Verification handoff
 
-List changed files, exact checks and exit results, skipped checks with reasons,
-and unresolved risks. Distinguish source review, fake-executable tests, help
-discovery, and real runtime integration. Do not claim model integration from
-offline tests. Request approval before publishing anything.
+List changed files, checks and exit results, skipped checks with reasons, and
+remaining risks. Say which checks ran on this project; do not present an
+assistant's summary as a passing test. Request approval before publishing.

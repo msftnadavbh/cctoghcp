@@ -1,20 +1,19 @@
 # Model decisions, Auto and HydraFusion research preview
 
-`/model` or `--model MODEL` selects from models **available to your account and enterprise policy**; installed help listing a name is not entitlement. `/model auto` is an Auto routing choice with configuration profile `efficiency`, `balance` or `intelligence` where supported. HydraFusion is a **research-preview** multi-model orchestration announced by [GitHub](https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/), not a guaranteed CLI API or a synonym for Auto. Single may use one underlying model, Cascade can escalate, and Critique can involve another evaluation step; those paths differ in quality/cost/latency and may charge for underlying work, not one fixed named model. Do not infer actual routing from the prompt wording, a visible final response or an internal issue trace. [claim:hydrafusion-preview]
+`/model` or `--model MODEL` selects from models **available to your account and enterprise policy**. `/model auto` selects Auto routing, with an `efficiency`, `balance` or `intelligence` profile where supported. [HydraFusion](https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/) is a **research preview**, separate from Auto. Its Single, Cascade and Critique modes may use different underlying work, cost and latency; the final answer does not reveal its internal route.
 
-| Decision | Use when | What to record / what not to claim |
+| Option | Choose it when | Check |
 | --- | --- | --- |
-| Pinned model | Compare equal tasks, control availability or context/cost preference | Record actual model picker value, context tier and credits; a pin is not deterministic output |
-| Auto (GA) | Prefer eligible routing and profile chosen for throughput/quality | Record profile and switches; do not equate with Hydra route |
-| HydraFusion (research preview) | Explicit paid trial, account exposes it | Record actual CLI version, `/experimental` setting and `/model` availability; no route certainty |
-| `/rubber-duck` | Need independent critique of plan | Distinct subagent workflow, not Hydra Critique mode |
-| `/fleet` | Independent work can genuinely overlap | Parallel agents/cost; not evidence of multiple models inside one Hydra call |
+| Pinned model | You want a specific available model | Use `/model`, then check its context and `/usage` |
+| Auto | You prefer routing among eligible models | Choose `/model auto` and, where offered, a profile |
+| HydraFusion (research preview) | You explicitly want a paid trial and the preview appears in `/model` | If needed, enable `/settings experimental on`; watch `/usage` |
 
-## A measurement protocol, not a prefilled result
+`/rubber-duck` requests critique and `/fleet` distributes work across agents; neither selects HydraFusion's internal mode.
 
-1. In an authorized test workspace, keep two *separate clean disposable copies* (or equal reviewed Git revisions approved by a human). Run both baseline checks before work; use identical task prompt, negative cases, file boundary, oracle and completion definition. A fresh `in-stock` exercise is a baseline without the earlier validation repair; compare like-for-like and include validation as an acceptance condition if you use the repaired copy.
-2. Review permission scope and budget first. `/update` is **optional and changes installation**: approve separately, then record `copilot --version`. If the entitled account supports research preview, use current captured configuration syntax `/settings experimental on`, then inspect `/model` and record whether Hydra appears. `/experimental on` appears in older announcement/UI guidance but is marked deprecated in captured 1.0.89 config help; don't teach it as the recommended setting. Never silently enable or install it as part of the core tutorial; if not present, record “unavailable” and end experiment.
-3. Give a substantive first-turn task with a concrete acceptance contract, not a one-word request. Run pinned/Auto versus Hydra on separate copies; keep human review, local executable checks and external oracle identical. Switching models mid-copy invalidates a simple A/B comparison; restart from equal state if a new approach is needed.
-4. Leave the actual measurement cells blank until a run. Suggested record: `version`, `eligible model/mode`, `task revision`, `started/ended monotonic time`, `accepted oracle exits`, `human corrections`, `reported credits`, `visible failures`, `unknown internal route`. **No outcome was observed in this repo.** One call can overrun a preview soft credit limit; cap outside the CLI as well. [claim:credit-limit]
+## Try a model comparison
 
-The [issue #4825](https://github.com/github/copilot-cli/issues/4825) notes a specific observed 1.0.84-2 condition, not a stable parser or 1.0.89 result. The **community** [hydrafusion-traces research by samuel tauil](https://github.com/samueltauil/hydrafusion-traces) is not a GitHub-owned product or CLI trace contract. Enterprise `.github/allowed_models.txt`, built-in fallbacks and optional BYOK are separate policies: inspect tenant rules rather than asserting that a name in help overrides enterprise policy. Return to a pinned supported model if preview is absent or budget/latency is unacceptable. [source:hydrafusion-announcement] [Scenario F](../scenarios/F-hydra-experiment.md).
+1. Use separate clean copies of the same task and run their baseline checks first. Keep the prompt, permissions, file boundary and acceptance check identical.
+2. Check `/model` and your credit budget. Only if you choose to try the preview, enable it through `/settings experimental on` where supported and check `/model` again. If unavailable, skip it. `/update` changes your installation and requires separate approval.
+3. Compare a pinned model or Auto against the preview in separate copies. Review each diff and run the same local checks. Record model choice, elapsed time, corrections and `/usage`; budget for underlying work and stop if cost or latency exceeds your limit.
+
+Return to an available pinned model when the preview is absent or unsuitable. [Optional comparison exercise](../scenarios/F-hydra-experiment.md).
