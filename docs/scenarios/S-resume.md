@@ -1,18 +1,17 @@
-# S — Resume with a nine-field handoff
+# S — Resume without trusting old context
+
+In the [first-lesson lab](../start/first-15-minutes.md), record the actual validation exit and your lab path, changed files, approvals and open decision. Exit Copilot and run `copilot --resume` to select the correct session; don't assume `--continue` is scoped to this lab. Once resumed, inspect `/cwd`, `/env`, `/permissions`, `/tasks` and current source. Ask: “Restate the agreed validation task and remaining check from current files; do not edit until it matches the handoff.” **Expected:** either matching state or a reason to stop and re-plan; a resume doesn't change code or pass the checker. [Nine-field handoff](../workflows/sessions-and-context.md).
 
 ## Goal and prerequisites
 
-Avoid confusing saved conversation with current filesystem or Git remote. New owned validation copy, private handoff note and optional entitled CLI; no Git repository in copy.
+Use an existing Copilot lab session and handoff.
 
 ## Start and deterministic check
 
 ```sh
-python3 -B -m scripts.lab setup /tmp/scenario-s --state /tmp/checkpoint-state --exercise validation
-python3 -I -B labs/expected-results/acceptance.py /tmp/scenario-s validation
+copilot --resume
 ```
-
-Record expected failure and [nine handoff fields](../workflows/sessions-and-context.md): objective, copy/ownership and session ID, baseline, files, checks/exits, grants, external effects, unresolved decision, next action. **Optional authorized resume:** `copilot -C /tmp/scenario-s --resume=REVIEWED_SESSION_ID --no-auto-update --no-remote-export --disable-builtin-mcps --disallow-temp-dir --available-tools=view,grep,glob` after confirming the selected ID; `/resume` picker is alternative. **Prompt:** “Restate the handoff and inspect the current files first; no edit until state matches.”
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** `/cwd`, `/env`, mode, task list and actual file match note. **Verification:** oracle remains failing until separately reviewed repair; `/compact`, `/new`, `/fork` do not change code, and `/fork worktree` needs a real Git repo. **Permissions:** read tools; `--no-remote-export` disables export/control, temp flag removes automatic temp access not approved cwd. **External effects:** optional credits/session state, no remote. **Escape:** wrong session → stop/select explicit ID; `/rewind` cannot undo remote actions. **Claude analogy/difference:** Claude continue/resume habit transfers, but `--continue` means latest, not implicit cwd filter. [source:cli-reference] 1.0.89 help, no resumed runtime test.
+**Prompt:** restate handoff above. **Checkpoint:** verify cwd and files. **Verification:** run check separately. **Permissions:** inspect grants anew. **External effects:** optional credits. **Escape:** pick correct session. **Claude analogy:** latest needn't match cwd. [source:cli-reference]

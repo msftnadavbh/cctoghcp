@@ -1,18 +1,17 @@
-# G — Pin a model for a reason
+# G — Choose a model without changing the contract
+
+In the [first-lesson validation lab](../start/first-15-minutes.md), record the failing check. Start Copilot with read tools and inspect `/env`, then `/model`; choose a named model **only if your account permits it**. Ask: “Locate the smallest shared guard causing boolean pagination inputs to pass; cite callers and tests. Do not edit.” Check the source citations and `/usage`; model choice does not turn an explanation into a repaired program. **Expected:** validation still exits 1 until you approve an edit, review diff and run the check. Use Auto in a separate trial if you want a comparison, not as an inferred model pin. [Model choices](../workflows/models-and-hydrafusion.md).
 
 ## Goal and prerequisites
 
-Distinguish available model selection from behavioral correctness. Python 3 and an owned validation copy; optional account entitlement, no source remote.
+Use the validation lab and an eligible account.
 
 ## Start and deterministic check
 
 ```sh
-python3 -B -m scripts.lab setup /tmp/scenario-g --state /tmp/checkpoint-state --exercise validation
-python3 -I -B labs/expected-results/acceptance.py /tmp/scenario-g validation
+copilot --version
 ```
-
-**Optional authorized start:** `copilot -C /tmp/scenario-g --no-auto-update --no-remote-export --disable-builtin-mcps --disallow-temp-dir --available-tools=view,grep,glob`. Inspect `/env`, then `/model`; select an account-permitted named model, or Auto in a *separate* trial. **Prompt:** “Identify the smallest shared guard for boolean pagination; cite tests, do not edit.”
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** record visible model/context/credits without exposing enterprise allowlists. **Verification:** failing oracle remains before an edit; if a later human-approved repair occurs, inspect diff then both `validation` and `baseline` oracles must pass. **Permissions:** read tools only; switching models adds no write/shell grant; temp flag does not isolate cwd. **External effects:** optional credits only. **Escape:** unsupported model/tenant policy → offline investigation, not forced Hydra toggle. **Claude analogy/difference:** explicit pin resembles Claude selection; Auto and Hydra differ and a pin doesn't produce deterministic text. [source:cli-reference] Version 1.0.89 help, no model call.
+**Prompt:** find the shared guard above. **Checkpoint:** selected model noted. **Verification:** check still fails before repair. **Permissions:** read only. **External effects:** optional credits. **Escape:** don't force unavailable models. **Claude analogy:** selection does not certify correctness. [source:cli-reference]

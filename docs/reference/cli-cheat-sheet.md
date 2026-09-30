@@ -1,6 +1,6 @@
 # Cli Cheat Sheet
 
-Generated from [migration matrix](../../evidence/migration-matrix.json) by `python3 -B -m scripts.generate_reference`; do not edit this table manually.
+Find the familiar task, try the Copilot action, then check the difference before approving tools. Start with the [hands-on lesson](../start/first-15-minutes.md).
 
 | Goal from Claude | Exact move | Boundary |
 | --- | --- | --- |
@@ -41,4 +41,4 @@ Generated from [migration matrix](../../evidence/migration-matrix.json) by `pyth
 | GitLab merge request | glab mr create --repo group/project --source-branch feature/catalog --target-branch main --title 'Catalog fix' --description 'Reviewed changes' --draft | Local Copilot doesn't publish; human approves push and MR separately |
 | Claude JSON output | --output-format json | JSONL is not Claude text/json/stream-json schema; real stdin/events untested |
 
-Per-row classification, version/status, source IDs and hosting: [migration matrix](../../evidence/migration-matrix.json). Entries are source/help observations, not authenticated runtime proof. [Versions](versions.md).
+Detailed classifications and supporting sources: [migration matrix](../../evidence/migration-matrix.json). Check your installed CLI and organization policy before relying on a version-dependent action. [Versions](versions.md).

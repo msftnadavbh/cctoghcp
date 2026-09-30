@@ -1,18 +1,17 @@
-# M — Debug bool-as-int at the shared boundary
+# M — Fix the shared boundary once
+
+Start at the [first-lesson validation lab](../start/first-15-minutes.md): record initial check exit 1 and identify all `integer()` callers with read tools. Then restart Copilot with `edit` available and ask: “Replace the shared boolean-accepting guard with exact integer validation; only edit `src/catalog.py` and focused `tests/test_catalog.py`. Preserve valid offsets/limits; no shell or code execution.” Approve specific writes. Before executing code, inspect `practice.py diff` for **all** files. Run `practice.py check` for `validation` and record exit 0 plus `Independent acceptance passed: validation`; if it still exits 1, diagnose the shared guard rather than patching one CLI caller. Next: [first hour](../start/first-hour.md).
 
 ## Goal and prerequisites
 
-Fix root cause rather than only a CLI symptom. New owned validation copy, Python 3; optional entitled Copilot, no remote.
+Use the broken validation lab with recorded failing check.
 
 ## Start and deterministic check
 
 ```sh
-python3 -B -m scripts.lab setup /tmp/scenario-m --state /tmp/checkpoint-state --exercise validation
-python3 -I -B labs/expected-results/acceptance.py /tmp/scenario-m validation
+copilot --version
 ```
-
-Record expected initial failure. **Optional authorized start:** `copilot -C /tmp/scenario-m --no-auto-update --no-remote-export --disable-builtin-mcps --disallow-temp-dir --available-tools=view,grep,glob,edit`; inspect `/env` and manual `/permissions`. **Prompt:** “Trace every `integer()` caller, repair shared bool guard only as needed, add regression for `True`/valid integers, preserve pagination; present diff and do not run code.”
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** one owner, only `src/catalog.py`/focused test change. **Verification:** human reviews actual diff first, then external `validation` and `baseline` oracles exit 0; failing-before and passing-after recorded separately. **Permissions:** reviewed edit requests, no agent shell/network; temp flag does not deny approved `/tmp` cwd. **External effects:** local edit and optional credits. **Escape:** unreproduced bug or unexpected file → stop, don't speculative-refactor. **Claude analogy/difference:** same debug loop, independent external oracle outranks model assertion. [source:cli-reference] v1.0.89 source only, no runtime invocation.
+**Prompt:** repair shared guard above. **Checkpoint:** inspect all diffs. **Verification:** validation exits 0. **Permissions:** reviewed edit only. **External effects:** local edits and optional credits. **Escape:** stop on unexpected path. **Claude analogy:** debug the root cause. [source:cli-reference]

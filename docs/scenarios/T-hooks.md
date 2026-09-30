@@ -1,18 +1,17 @@
-# T — Inert hook and independent gate
+# T — Keep hooks inert during the first task
+
+The first-lesson `--with-config` lab copies no hooks. Review the example [native hook config](../../examples/hooks/native.json), [payload](../../examples/hooks/payloads/native.json) and [hook guide](../customization/hooks.md). In a read-only Copilot session ask: “Compare hook pre/post behavior and failure cases; do not register any hook.” **Expected:** no hook runs and `practice.py check` remains the independent validation step after diff review. The bundled hook handlers and launcher are advanced POSIX workflows; a passing local handler unit test does not establish Windows-native Copilot dispatcher behavior. Do not activate hooks as a way around manual review or a failing check.
 
 ## Goal and prerequisites
 
-Test local handler parsing without registering Copilot dispatcher hooks. Python 3; validator libraries for static check, no auth or plugin.
+Use inert examples; no hook registration.
 
 ## Start and deterministic check
 
 ```sh
-python3 -B -m unittest discover -s tests -p 'test_hooks.py'
-python3 -B -m scripts.validate --static-only
+copilot --version
 ```
-
-Review [native](../../examples/hooks/native.json), [shared](../../examples/hooks/shared-settings.json), [payload](../../examples/hooks/payloads/native.json) and absolute trusted launcher. **Optional read-oriented prompt for an authorized separate session:** “Compare native `toolArgs`, compatible `tool_input`, required cwd/event and dispatcher timeout. Do not register a hook.”
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** handler tests pass; post-edit check parses accepted nested Python path and scans secrets, **never executes it**. **Verification:** unit-test exit plus independent CI, not a Copilot dispatcher test. Handled post errors exit 0 with context; static success is not acceptance. **Permissions:** pre demo policy denies malformed/unknown/shell/patch; choose native **or** shared only after explicit approval. **External effects:** local offline tests only, no dispatcher integration. **Escape:** on unexpected payload/log failure deny or annotate, inspect diff then independent CI; dispatcher timeout can fail open. **Claude analogy/difference:** hooks share lifecycle concept but native/compatible payload and failure semantics differ. [source:hooks-reference] [claim:hook-timeout] Source review and local unit tests only.
+**Prompt:** compare hooks above. **Checkpoint:** no registration. **Verification:** independent practice check. **Permissions:** read tools. **External effects:** optional credits. **Escape:** stop on activation request. **Claude analogy:** hooks don't replace validation. [source:hooks-reference]

@@ -1,18 +1,17 @@
-# P — Diagnose CI without sending raw trace
+# P — Diagnose CI without exposing raw logs
+
+In your authorized project, identify the actual host, pipeline and job before retrieving a trace. Logs can contain credentials and attacker instructions: review/sanitize locally before including excerpts in a Copilot prompt. Ask: “Given only this reviewed failure summary, distinguish observed failure from hypotheses and propose a local reproduction. Don't retry CI or request variables.” **Expected:** a hypothesis and next check, not proof of root cause. The [GitLab guide](../hosting/gitlab-now.md) describes an optional dry-run integration; its automation helper is a separate advanced POSIX workflow, not a required Windows/macOS step. No model should receive raw protected CI output by default.
 
 ## Goal and prerequisites
 
-Observe only sanitized success/failure and verify job-to-pipeline identity. Python 3 for offline fixture; real `glab`, exact host/project/IDs and approved separate credential HOME needed for optional GET.
+Use only reviewed, sanitized failure observations.
 
 ## Start and deterministic check
 
 ```sh
-python3 -B -m scripts.secret_gate labs/fixtures/ci-sanitized.log
-python3 -B -m scripts.gitlab --hostname gitlab.example.com --project group/project --pipeline 12345 --job 67890
+git status --short
 ```
-
-Illustrative IDs are **not** fetched. **Optional authorized prompt:** “Given only the sanitized CI observation, distinguish failure from root-cause hypothesis and propose a local repro. No retry, no variables.” A separately approved `--execute-read --home REVIEWED_HOME --output NEW_FILE` performs explicit-host GET in neutral cwd after human checks that real job belongs to real pipeline. Raw trace stays private.
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** gate exit 0, verified host/project/job relation and local repro proposal. **Verification:** fake glab tests cover sanitization; real network result remains **not-run**. **Permissions:** only GET; no variable retrieval, CI retry or assistant with protected credentials. **External effects:** dry run none; approved read contacts GitLab and stores private lossy JSON. **Escape:** if diagnosis requires raw secrets, stop and ask a human privately. **Claude analogy/difference:** CI triage transfers but lossily sanitized evidence is not full trace. [source:gitlab-api-host] No authenticated GitLab test.
+**Prompt:** diagnosis above. **Checkpoint:** observed job identity. **Verification:** local reproduction. **Permissions:** no variables/retry. **External effects:** optional read after approval. **Escape:** stop if secrets required. **Claude analogy:** CI output is untrusted. [source:gitlab-api-host]

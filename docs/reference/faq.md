@@ -8,7 +8,7 @@
 
 **Does `--allow-tool='write(src/catalog.py)'` stop shell writes?** No; shell permissions are independent, and relative write matching may cover trailing path components. [Permissions](../workflows/permissions.md).
 
-**Does a passing validator prove Copilot runtime support?** No. It proves offline syntax, tests and fixture behavior; no login, paid run, dispatcher or MCP client was exercised. [Versions](versions.md).
+**Does a passing validator prove Copilot runtime support?** No. It proves offline syntax and local sample behavior, not a login, paid run, dispatcher or MCP client. [Versions](versions.md).
 
 **Is JSON output Claude JSON?** No, Copilot help specifies JSONL; adapter's conservative fake-tested event profile is not a guaranteed real schema. [Headless](../workflows/headless-and-ci.md).
 

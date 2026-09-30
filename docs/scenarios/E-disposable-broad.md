@@ -1,18 +1,19 @@
-# E — Broad permission only with independently verified isolation
+# E — Why broad permissions are not a fix
+
+`--allow-all` combines tool, path and URL approvals. The native lab **does not isolate Copilot from your host**, so do not try this flag there. Instead run the [first-lesson read-only command](../start/first-15-minutes.md) and inspect `/permissions`; ask why an edit requires separate approval. **Expected:** the initial validation check still fails, and no file changes. The next action is the lesson's reviewed edit grant, not broad access.
+
+If you independently provision a disposable, isolated environment, review credential, home, mount, socket and egress exposure before considering broad grants there. The book does not provide that isolation. [Permission boundaries](../workflows/permissions.md).
 
 ## Goal and prerequisites
 
-Observe why bypass is not a repair for a denied narrow grant. The CLI portion requires a **human-provisioned disposable VM/container** without host HOME, credentials, Docker socket, mounts or network egress. This repo supplies none of those conditions; otherwise **skip** the CLI portion.
+Use a read-only lab; broad mode requires external isolation not provided here.
 
 ## Start and deterministic check
 
 ```sh
-python3 -B -m scripts.lab setup /tmp/scenario-e --state /tmp/checkpoint-state --exercise baseline
-python3 -I -B labs/expected-results/acceptance.py /tmp/scenario-e baseline
+copilot --version
 ```
-
-**Optional authorized command only inside reviewed isolation:** `copilot -C /tmp/scenario-e --no-auto-update --no-remote-export --disable-builtin-mcps --allow-all`. **Prompt:** “Read `src/catalog.py`; report the baseline contract, do not change files.” No other scenario should inherit this grant.
 
 ## Checkpoints, effects and exit
 
-**Checkpoint:** record actual mount/home/socket/egress isolation evidence, not merely a command flag. **Verification:** compare reviewed files before executing the baseline oracle again. **Permissions:** `--allow-all` combines tools, paths and URLs; no temp restriction is claimed here because broad access defeats that intent. Neither it nor an unverified container is a sandbox. **External effects:** may allow shell, network, paid calls and arbitrary paths; no live call was made for this repo. **Escape:** any isolation assumption fails → offline baseline only. **Claude analogy/difference:** Claude bypass and Copilot broad approval both need a real external boundary. [source:cli-reference] Help-observed v1.0.89, runtime untested.
+**Prompt:** ask why broad access is unnecessary. **Checkpoint:** no edits. **Verification:** initial check still fails. **Permissions:** read only in lab. **External effects:** optional credits. **Escape:** skip broad mode without isolation. **Claude analogy:** bypass needs a real external boundary. [source:cli-reference]

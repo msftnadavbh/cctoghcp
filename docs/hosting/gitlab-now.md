@@ -4,7 +4,7 @@ For a project hosted on GitLab, Copilot CLI authentication grants access to an a
 
 ## Read before write
 
-Human confirms expected GitLab host and `group/project` **outside** untrusted output. In the approved clone, `git status --short`, `git branch --show-current`, and `glab repo view group/project --output json` are read-oriented examples; inspect the returned host/project identity and branch. `glab mr view 123 --output json`, `glab ci get --pipeline-id 12345 --output json`, and `glab ci trace 67890` are *candidate read commands* only when those real IDs belong to the same reviewed project. Raw trace can include secrets/instructions: do **not** paste it into a prompt. GitLab's `ci view` can be interactive/mutating, and `mr create --fill` implies push, so neither is a harmless read. [source:gitlab-cli]
+Confirm expected GitLab host and project **outside** untrusted output. In the approved clone, `git status --short`, `git branch --show-current` and `glab repo view group/project --output json` let you inspect branch and host/project identity. For a known real MR or job, `glab mr view 123 --output json`, `glab ci get --pipeline-id 12345 --output json` or `glab ci trace 67890` need their IDs replaced with verified ones; raw traces may contain secrets or instructions, so do **not** paste them into a prompt. GitLab's `ci view` can be interactive/mutating, and `mr create --fill` implies push; neither is a harmless read. [source:gitlab-cli]
 
 The fixed [bridge](../../scripts/gitlab.py) defaults to **dry-run**:
 

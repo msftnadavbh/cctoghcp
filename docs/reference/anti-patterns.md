@@ -14,7 +14,7 @@
 | Pasting raw CI trace | Secret/injection risk | Lossy sanitized bridge and private original |
 | Turning GitLab MR into GitHub PR | Wrong hosting action | Use the selected host's review workflow; GitHub cloud delegation requires a GitHub-hosted target |
 | Claiming model experiment outcome in advance | False evidence | Record measured exits/time/credits only after run |
-| Equating fixture with Copilot runtime | Portability overclaim | Label tests as fake/protocol/static |
+| Equating sample checks with Copilot runtime | Portability overclaim | Report offline and authenticated checks separately |
 | Compact without handoff | Missing decisions | Write nine-field handoff first |
 | Using `/rewind` as external rollback | Leaves remote/shell effects | Inspect effects, reverse only with approval |
 

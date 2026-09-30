@@ -12,6 +12,18 @@ oracle = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(oracle)
 
 
+def feature_source(text):
+    """Known-good exercise fixture shared with the native-path tests."""
+    text = text.replace('query="", offset=0, limit=20):', 'query="", offset=0, limit=20, in_stock=None):')
+    text = text.replace('    matches = [p for p in products',
+        '    if in_stock is not None and type(in_stock) is not bool:\n        raise ValueError("invalid stock")\n'
+        '    products = [p for p in products if in_stock is None or p.in_stock is in_stock]\n    matches = [p for p in products')
+    text = text.replace('{"query", "offset", "limit"}', '{"query", "offset", "limit", "in_stock"}')
+    return text.replace('    args = parser.parse_args(argv)',
+        '    parser.add_argument("--in-stock", choices=["true", "false"])\n    args = parser.parse_args(argv)\n'
+        '    args.in_stock = None if args.in_stock is None else args.in_stock == "true"')
+
+
 class AcceptanceTests(unittest.TestCase):
     def test_baseline_refactor_and_feature_api_cli(self):
         oracle.check(ROOT / "labs/sample-app", "baseline")
@@ -20,14 +32,7 @@ class AcceptanceTests(unittest.TestCase):
             root = Path(directory)
             setup(root / "lab", root / "state")
             path = root / "lab/src/catalog.py"
-            text = path.read_text().replace('query="", offset=0, limit=20):', 'query="", offset=0, limit=20, in_stock=None):')
-            text = text.replace('    matches = [p for p in products',
-                '    if in_stock is not None and type(in_stock) is not bool:\n        raise ValueError("invalid stock")\n'
-                '    products = [p for p in products if in_stock is None or p.in_stock is in_stock]\n    matches = [p for p in products')
-            text = text.replace('{"query", "offset", "limit"}', '{"query", "offset", "limit", "in_stock"}')
-            text = text.replace('    args = parser.parse_args(argv)',
-                '    parser.add_argument("--in-stock", choices=["true", "false"])\n    args = parser.parse_args(argv)\n'
-                '    args.in_stock = None if args.in_stock is None else args.in_stock == "true"')
+            text = feature_source(path.read_text())
             path.write_text(text)
             oracle.check(root / "lab", "in-stock")
             path.write_text(text.replace('"total": len(matches)', '"total": True'))

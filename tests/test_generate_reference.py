@@ -23,3 +23,14 @@ class ReferenceTests(unittest.TestCase):
                         {**row, "source_ids": ["invented-source"]}):
             with self.subTest(changed=changed), self.assertRaises(ValueError):
                 validate_rows([changed, *rows[1:]], sources)
+
+    def test_native_start_and_reference_have_no_legacy_setup(self):
+        pages = [ROOT / "README.md", *(ROOT / "docs/start").glob("*.md"),
+                 *(ROOT / "docs/reference" / name for name in OUTPUTS)]
+        for page in pages:
+            with self.subTest(page=page.name):
+                text = page.read_text()
+                self.assertNotIn("WSL", text)
+                self.assertNotIn("/tmp/", text)
+                self.assertNotIn("Generated from", text)
+                self.assertNotIn("scripts.lab setup", text)
