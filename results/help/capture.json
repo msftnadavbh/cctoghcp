@@ -1,0 +1,145 @@
+{
+  "kind": "help-only",
+  "captured_at": "2026-09-30T14:03:41.572142+00:00",
+  "platform": "Linux",
+  "python": "3.12.3",
+  "auth_probes": false,
+  "model_calls": false,
+  "commands": [
+    {
+      "id": "version",
+      "argv": [
+        "copilot",
+        "--version"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "437f4cbde248af21ab6dabb99fe583b6ed1cb703722c3021ed75084a391f05d7"
+    },
+    {
+      "id": "help",
+      "argv": [
+        "copilot",
+        "--help"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "ba3c0a6003bacc3d72d3e068512b37bef22a90b0e9b3f8f2c6fa6ae5da7be9d2"
+    },
+    {
+      "id": "commands",
+      "argv": [
+        "copilot",
+        "help",
+        "commands"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "a15cba394f74a912b3deccf5dffb22fccae5097cc0ec358a1c52116767004cf8"
+    },
+    {
+      "id": "config",
+      "argv": [
+        "copilot",
+        "help",
+        "config"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "d73392da4d6aaf1fe15db08cbeb21528b4add2ffeac3e2fab8a07bf585bd933d"
+    },
+    {
+      "id": "environment",
+      "argv": [
+        "copilot",
+        "help",
+        "environment"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "6f73661907135dcd8aae729fbf4d929c4c46c33cf8062e927fb8476b463a37a4"
+    },
+    {
+      "id": "permissions",
+      "argv": [
+        "copilot",
+        "help",
+        "permissions"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "b11bef78152a4c48ff0ac50b86cd3c5d559093be63b03561916bb45ceaf0efa4"
+    },
+    {
+      "id": "plugin",
+      "argv": [
+        "copilot",
+        "plugin",
+        "--help"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "5329cfea11820d22ec67a02bbb368983bc5f2939157e641a318380c100b5b82e"
+    },
+    {
+      "id": "plugin-install",
+      "argv": [
+        "copilot",
+        "plugin",
+        "install",
+        "--help"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "93d06c90a64f0e6ab9dee46433c6b182a4f11a13c587a4ac3b2b90c01f5eddbf"
+    },
+    {
+      "id": "plugin-list",
+      "argv": [
+        "copilot",
+        "plugin",
+        "list",
+        "--help"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "9151bf5cd1c1edaf96d567c3e54ba3fade86c6f26c8f9584e48ef12d4534897b"
+    },
+    {
+      "id": "plugin-enable",
+      "argv": [
+        "copilot",
+        "plugin",
+        "enable",
+        "--help"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "57ca6692b008ca3407571bfd19221438e97b8d6e848b3cf09bc7720714a9a52a"
+    },
+    {
+      "id": "plugin-disable",
+      "argv": [
+        "copilot",
+        "plugin",
+        "disable",
+        "--help"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "5f6766da8956aad1916cf35d4994d3af8c63eb68d35e46d8a9b512914b6b7b9e"
+    },
+    {
+      "id": "plugin-uninstall",
+      "argv": [
+        "copilot",
+        "plugin",
+        "uninstall",
+        "--help"
+      ],
+      "status": "ok",
+      "exit": 0,
+      "sha256": "5fd945630c01cc04604f273d81e6b9a9f53a135ccd0247400c861f51150a3d89"
+    }
+  ]
+}

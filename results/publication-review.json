@@ -1,0 +1,73 @@
+{
+  "date": "2026-09-30",
+  "target": "msftnadavbh/cctoghcp",
+  "required_visibility": "PRIVATE",
+  "authorization": "User explicitly authorized the initial commit, private repository creation, remote setup and initial push.",
+  "status": "Prepublication content review; remote publication is verified separately after push.",
+  "reviewed_tree_before_this_record": "c323474880e1c90410cde2ed3f70f786a62f8fa0",
+  "reviewed_files_before_this_record": 162,
+  "heuristic_matches": 7,
+  "scanner": {
+    "path": "scripts/safety.py",
+    "symbol": "SECRET",
+    "sha256": "2f5c4944e80c0f7e551bf889944323710460f65ca413d260a7e400aeacc93b87",
+    "limitations": "Heuristic detection is not proof that all possible credentials are absent. No scanner or live-input gate was weakened."
+  },
+  "accepted_noncredential_findings": [
+    {
+      "path": "results/help/environment.txt",
+      "sha256": "6f73661907135dcd8aae729fbf4d929c4c46c33cf8062e927fb8476b463a37a4",
+      "git_blob": "8625f019cc9c78ac459f5c2693a42de8428abb5d",
+      "matches": [{"line": 89, "byte_offset": 10347}],
+      "reason": "Upstream help uses illustrative authentication-header syntax, not a credential. Exact placeholder content was checked in memory."
+    },
+    {
+      "path": "scripts/safety.py",
+      "sha256": "2f5c4944e80c0f7e551bf889944323710460f65ca413d260a7e400aeacc93b87",
+      "git_blob": "18cf17493c5ea725bd3157a2b6c223c2ca1eaea9",
+      "matches": [{"line": 60, "byte_offset": 1689}],
+      "reason": "The detector matches its own regular-expression variable declaration; this is executable syntax, not credential data."
+    },
+    {
+      "path": "tests/test_hooks.py",
+      "sha256": "c90de0a6c8e1f425b06928c1726ec4c15d50ad59d813c1db631d5c5c663ce0ac",
+      "git_blob": "8a7b60fb8184d4df3ac1245d37fb13efcd6ee9a1",
+      "matches": [{"line": 46, "byte_offset": 2185}, {"line": 68, "byte_offset": 3516}],
+      "reason": "Assignment syntax in synthetic negative-test inputs; inspected matches contain only source punctuation or the known test canary."
+    },
+    {
+      "path": "tests/test_protocol_gitlab.py",
+      "sha256": "3fb719d91b9652d888228d6d3399fb385cea6bd53408332195c96fe69d9aed83",
+      "git_blob": "46eb6ed7ab1664c3df0f432e82a36a1a98e03e1b",
+      "matches": [{"line": 76, "byte_offset": 3728}],
+      "reason": "Synthetic fake-glab trace intentionally contains a known canary to test sanitization; no service credential."
+    },
+    {
+      "path": "tests/test_safety_lab.py",
+      "sha256": "35425d214ad2dd267cfa8bc952abb84641ce101471f0adcc022da65fe9ad9ff6",
+      "git_blob": "eab7c09041bb098a834c5af54bf494be51015431",
+      "matches": [{"line": 71, "byte_offset": 3046}, {"line": 83, "byte_offset": 3612}],
+      "reason": "Synthetic sanitization and detector-rejection fixtures with known canaries and an invalid-domain example."
+    }
+  ],
+  "acceptance_scope": "Only these exact blobs and match locations are accepted for this publication. Any changed hash or additional finding requires fresh review. The final index must be rescanned including this record.",
+  "lead_checks": [
+    "Scanned all 162 staged blobs, not only working-tree files; all unlisted blobs passed the existing heuristic.",
+    "Compared flagged values with expected syntax or synthetic literals in memory without printing matched values.",
+    "Confirmed the working tree matches the index and no ignored files were staged.",
+    "Confirmed existing Git author and committer identity is the authorized account; no Git configuration changed."
+  ],
+  "independent_review": {
+    "reviewer": "Cross-family alternative-reviewer",
+    "method": "Read-only working-tree context and supplemental pattern review; no independent Git hash computation or test execution claimed.",
+    "result": "Conditional approval for exact-blob publication exceptions; lead reconciled the match count to seven and verified index identity.",
+    "supplemental_categories": ["Provider-key patterns", "Private-key markers", "Quoted credential fields", "Bearer and URL credentials", "Private metadata"],
+    "limits": "Supplemental findings were synthetic tests, documentation metadata or upstream help examples. This remains a bounded review, not exhaustive secret-detection assurance."
+  },
+  "raw_evidence": {
+    "preserved": ["results/help/commands.txt", "results/help/config.txt"],
+    "decision": "Retain captured EOF blank lines and original hashes; the two whitespace warnings are accepted only for these raw evidence files."
+  },
+  "historical_records": "Earlier implementation records describing an uninitialized/unpublished workspace remain dated history. This separately authorized publication supersedes that state, without changing product-integration evidence.",
+  "ci": "The initial push may trigger the existing dependency-installing validation workflow. It uses no paid models or Copilot credentials."
+}

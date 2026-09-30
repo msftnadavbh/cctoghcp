@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [{"type":"command","exec":"/usr/bin/python3","args":["-I","-B","/REVIEW/checkpoint/scripts/trusted_launcher.py","hook","pre","--lab","/REVIEW/owned lab"],"cwd":"/REVIEW/checkpoint","timeoutSec":15}],
+    "postToolUse": [{"type":"command","exec":"/usr/bin/python3","args":["-I","-B","/REVIEW/checkpoint/scripts/trusted_launcher.py","hook","post","--lab","/REVIEW/owned lab"],"cwd":"/REVIEW/checkpoint","timeoutSec":15}]
+  }
+}

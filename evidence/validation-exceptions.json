@@ -1,0 +1,5 @@
+{
+  "placeholder_paths":["examples/hooks/native.json","examples/hooks/shared-settings.json","examples/hooks/payloads/native.json","examples/hooks/payloads/compatible.json","examples/mcp/gitlab-http.experimental.json","examples/mcp/local.json"],
+  "link_exceptions":[],
+  "note":"Exceptions must name a concrete path or source id, reason, review date, and expected status; no blanket external-link pass. /REVIEW templates remain inert."
+}

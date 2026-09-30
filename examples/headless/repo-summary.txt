@@ -1,0 +1,2 @@
+Read the synthetic catalog only. Summarize entry points, domain validation,
+request/CLI seams and tests with file/line evidence. Do not edit or execute.

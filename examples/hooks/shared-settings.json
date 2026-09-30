@@ -1,0 +1,6 @@
+{
+  "hooks": {
+    "PreToolUse": [{"matcher":"*","hooks":[{"type":"command","command":"/usr/bin/python3 -I -B '/REVIEW/checkpoint/scripts/trusted_launcher.py' hook pre --lab '/REVIEW/owned lab'","timeout":15}]}],
+    "PostToolUse": [{"matcher":"Edit|Write","hooks":[{"type":"command","command":"/usr/bin/python3 -I -B '/REVIEW/checkpoint/scripts/trusted_launcher.py' hook post --lab '/REVIEW/owned lab'","timeout":15}]}]
+  }
+}

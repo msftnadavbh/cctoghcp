@@ -1,0 +1,4 @@
+Fix only the synthetic catalog bool-as-int validation defect. Trace the shared
+integer boundary and sibling callers, preserve valid behavior, and add a focused
+test. Do not run shell tools. Automatic checks are static only; a human must
+review the diff before separately running the external acceptance oracle.

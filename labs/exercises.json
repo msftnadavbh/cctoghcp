@@ -1,0 +1,6 @@
+{
+  "validation": {"timebox": "first-15-minutes", "mutation": "integer accepts bool", "acceptance": "validation", "task": "Reproduce and fix bool-as-int at the shared domain boundary; preserve valid pagination."},
+  "in-stock": {"timebox": "first-hour", "mutation": null, "acceptance": "in-stock", "task": "After the validation fix, add optional in_stock=None|bool to list_products and handle_request. Filter before pagination, preserve totals, reject ints and strings. CLI --in-stock accepts true/false; omission means None."},
+  "refactor": {"mutation": null, "acceptance": "refactor", "task": "Extract serialization into a named pure function without changing observable request or CLI behavior."},
+  "fleet": {"read_only": true, "tasks": ["Trace domain validation and all callers", "Independently inspect pagination/filter order", "Compare request and CLI seams and identify missing tests"], "handoff": "Separate proven findings from hypotheses; cite file and line, consequence and proposed validation. One integrator decides edits."}
+}

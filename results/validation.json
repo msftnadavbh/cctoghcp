@@ -1,0 +1,20 @@
+{
+  "date":"2026-09-30",
+  "kind":"offline-local-verification",
+  "command":["python3","-B","-m","scripts.validate"],
+  "exit_status":0,
+  "repository_tests":50,
+  "sample_app_tests":3,
+  "external_baseline_acceptance":"passed",
+  "static_checks":"passed",
+  "python":"3.12.3",
+  "observed_validator_versions":{"PyYAML":"6.0.1","jsonschema":"4.26.0"},
+  "ci_pinned_validator_versions":{"PyYAML":"6.0.2","jsonschema":"4.23.0"},
+  "ci_run":"not-run; CI dependency pins not installed locally",
+  "fake_executables":["copilot-compatible fixture","glab-compatible fixture"],
+  "dry_run_smoke_checks":["headless repo-summary","GitLab explicit resource plan","optional source link checker"],
+  "not_runtime_tested":["Copilot stdin semantics","Copilot JSONL events","Copilot hook dispatch","Copilot MCP integration","Copilot plugin lifecycle","instruction precedence","paid model workflow"],
+  "review":"Lead reran the full suite after independent Opus security re-review, onboarding/hosting audit, and final matrix/editorial fixes. See results/review-passes.md. Approval is limited to offline teaching artifacts, not activation or production use.",
+  "safety_revision":"Exact event-to-launcher hook binding; explicitly selected token environment forwarding tested only with synthetic fake executables; fresh empty owned 0700 HOME; allowlisted optional with-config lab setup; static-only hook/headless checks and independent human-reviewed acceptance remain unchanged.",
+  "safety":"No model calls, auth probes, external writes, commits or global installs. Help-only CLI discovery is recorded separately."
+}

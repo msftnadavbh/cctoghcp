@@ -1,0 +1,13 @@
+{
+  "date":"2026-09-30",
+  "platform":"Linux",
+  "observed_versions":{"git":"2.43.0","gh":"2.45.0","python":"3.12.3","node":"22.23.3","npm":"10.9.9"},
+  "observed_globally_absent":["copilot","claude","glab"],
+  "copilot":{"version":"1.0.89","installation":"lead isolated npm install --prefix /tmp/opencode/checkpoint-copilot-1.0.89 --ignore-scripts --no-audit --no-fund @github/copilot@1.0.89; env -i help/version only","stable_release":"v1.0.89","published_at":"2026-09-28T19:20:50Z"},
+  "plugin_lifecycle":{"status":"not-run","reason":"Not activated during validation; isolated install help reviewed, local-path lifecycle deferred. Official docs include local paths but installed help omits them. No install/enable/disable/uninstall performed."},
+  "paid_integration":"not-run",
+  "authentication_probes":false,
+  "mcp_cli_integration":"not-run",
+  "hook_dispatcher_runtime":"not-run",
+  "headless_stdin_runtime":"not-run"
+}

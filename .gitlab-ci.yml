@@ -1,0 +1,9 @@
+{
+  "image":"python:3.12.3-slim",
+  "stages":["validate"],
+  "offline-validation":{
+    "stage":"validate",
+    "script":["python -m pip install -r requirements-validation.txt", "python -B -m scripts.validate"],
+    "variables":{"PYTHONDONTWRITEBYTECODE":"1"}
+  }
+}

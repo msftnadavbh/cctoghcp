@@ -1,0 +1,5 @@
+Synthetic sanitized fixture; no real job, project, credentials, or URLs.
+FAIL: test_validation (test_catalog.CatalogTests.test_validation)
+AssertionError: ValueError not raised
+Ran 3 tests
+FAILED (failures=1)

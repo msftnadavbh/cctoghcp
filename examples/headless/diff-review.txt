@@ -1,0 +1,3 @@
+Review the human-provided local change description and relevant catalog files.
+Report severity, file/line, consequence and proposed validation. Separate proven
+findings from hypotheses. No edits, execution, external requests or publishing.

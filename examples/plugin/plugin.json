@@ -1,0 +1,7 @@
+{
+  "$schema":"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name":"checkpoint-skills",
+  "version":"1.0.0",
+  "description":"Portable offline migration investigation skills; no hooks, servers or agents.",
+  "keywords":["migration","offline","verification"]
+}

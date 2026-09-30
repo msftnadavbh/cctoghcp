@@ -1,0 +1,1 @@
+{"mcpServers":{"checkpoint-synthetic":{"type":"local","command":"/usr/bin/python3","args":["-I","-B","/REVIEW/checkpoint/scripts/trusted_launcher.py","mcp"],"tools":["synthetic_catalog_count"]}}}

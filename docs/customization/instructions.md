@@ -1,0 +1,5 @@
+# Instructions: attach only what is needed
+
+Start with root `CLAUDE.md`, don't rename it on day one. Copilot recognizes it along with `.claude/CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md`, path-scoped `.github/instructions/*.instructions.md`, and (v1.0.89) `.claude/rules`. Adding another root policy risks contradictions. Repository-relative `@` imports are allowed within repository/custom boundaries but not absolute or `~` imports; `GEMINI.md` and `*.instructions.md` do not expand those imports. Inspect `/instructions` and `/env` after restart/resume for actual attachment. [source:instructions-reference] [claim:rules-added]
+
+The [coexistence fixtures](../../examples/coexistence/CLAUDE.md) intentionally overlap: compare result for `packages/catalog` vs an unrelated path and record whether a rule was attached. The static fixture validator confirms formatting only; it cannot establish precedence. Do not globally resolve conflicting rules by guess. Agents acting as subagents default to not including repository instructions; set `include-custom-instructions: true` explicitly if required. [Compatibility](../migration/compatibility.md).
