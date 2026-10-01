@@ -1,4 +1,5 @@
 [
+  {"id":"chronicle-reference","url":"https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/chronicle","retrieved":"2026-10-01","kind":"official-docs","note":"Chronicle history search, standups, tips, instruction improvements, reindexing and session management."},
   {"id":"copilot-authentication","url":"https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli","retrieved":"2026-09-30","kind":"official-docs","note":"Personal fine-grained PAT needs Copilot Requests account permission; interactive OAuth is available."},
   {"id":"gitlab-api-host","url":"https://docs.gitlab.com/cli/api/","retrieved":"2026-09-30","kind":"official-docs","note":"--hostname selects the GitLab host; --method GET specifies a read request."},
   {"id":"cli-context7","url":"https://github.com/github/copilot-cli","retrieved":"2026-09-30","kind":"context7","note":"Copilot CLI project and documentation."},

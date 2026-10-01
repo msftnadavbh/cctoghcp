@@ -45,6 +45,7 @@ Use this path when you want to preserve existing agent workflows while making th
 | --- | --- | --- |
 | Quick translation | Familiar Claude action → Copilot CLI move and the important difference. | [CLI cheat sheet](docs/reference/cli-cheat-sheet.md) |
 | Full translation | Instructions, commands, skills, sessions, review and advanced controls. | [Muscle memory](docs/reference/muscle-memory.md) |
+| Chronicle and session history | Search earlier work, prepare standups, improve instructions and review skill proposals. | [Chronicle commands](docs/workflows/sessions-and-context.md#chronicle-find-and-learn-from-previous-work) |
 
 | If you used Claude to… | In Copilot CLI… | Difference to check |
 | --- | --- | --- |
