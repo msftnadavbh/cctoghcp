@@ -35,6 +35,16 @@ Find the familiar task, try the Copilot action, then check the difference before
 | Copilot Auto routing | /model auto | Auto routing is not HydraFusion research preview or fleet parallelism |
 | HydraFusion trial | /settings experimental on; inspect /model | Check eligibility and credits; internal route is not visible |
 | Claude context inspection | /context | Context usage is not conversation durability |
+| Browse past coding sessions | /chronicle | Opens the history-insights picker; it does not resume a conversation |
+| Prepare a standup from recent work | /chronicle standup | Defaults to the last 24 hours; append for the last 3 days to change the period |
+| Find an earlier discussion | /chronicle search authentication | Replace authentication with your topic; searches session content, not source files |
+| Improve prompting habits | /chronicle tips | Uses recent sessions; append for better prompting to focus recommendations |
+| Understand token spending | /chronicle cost-tips | Analyzes usage across sessions; /usage shows current-session usage |
+| Refine project instructions from repeated corrections | /chronicle improve | Current repository only; approved suggestions update .github/copilot-instructions.md, so avoid duplicating CLAUDE.md |
+| Turn a repeated workflow into a skill | /chronicle skills create | Drafts from session usage; compare with existing .claude/skills before applying |
+| Review suggested skills | /chronicle skills review | Review instructions, scripts and permissions before accepting a proposal |
+| Track skill proposals | /chronicle skills status | Tracks proposals; /skills lists skills available to the session |
+| Recover missing session-history entries | /chronicle reindex | Rebuilds the local session store and syncs session data to your account; not a routine cleanup command |
 | Claude compact | /compact | Summarization is lossy; keep a written handoff |
 | Claude new conversation | /new | Does not reset files or Git branch |
 | Claude rewind | /rewind | Does not guarantee rollback of shell/network effects |
