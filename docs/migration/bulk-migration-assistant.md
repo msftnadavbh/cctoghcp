@@ -19,7 +19,7 @@ cd /path/to/your/repository
 copilot
 ```
 
-Or start a Copilot app session on the repository project. If important workflow guidance lives outside the repo, paste the reviewed excerpt from Confluence, a runbook, a shared prompt or a session handoff into the prompt. Do not paste secrets, raw private transcripts or credential-bearing logs.
+Or start a Copilot Desktop app session on the repository project. If important workflow guidance lives outside the repo, paste the reviewed excerpt from Confluence, a runbook, a shared prompt or a session handoff into the prompt. Do not paste secrets, raw private transcripts or credential-bearing logs.
 
 ## Run 1: scan only
 

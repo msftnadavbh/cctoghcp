@@ -1,6 +1,6 @@
-# Use the GitHub Copilot app as a visual workbench
+# Use the GitHub Copilot Desktop app as a visual workbench
 
-The CLI is the closest fit for terminal-first Claude Code muscle memory, but some teams need a visual surface for sessions, branches, pull requests and review. Use the GitHub Copilot app when you want one place to coordinate agent work while still preserving human approval.
+The CLI is the closest fit for terminal-first Claude Code muscle memory, but some teams need a visual surface for sessions, branches, pull requests and review. Use the GitHub Copilot Desktop app when you want one place to coordinate agent work while still preserving human approval.
 
 Use the app to make the workflow visible:
 
@@ -14,7 +14,7 @@ The app can help a team see issue/branch/PR flow more easily than a terminal. It
 
 ## First safe app prompt
 
-Use this in a Copilot app session opened on the repository:
+Use this in a Copilot Desktop app session opened on the repository:
 
 ```text
 Analyze this repository.

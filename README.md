@@ -9,7 +9,7 @@ A practical transition guide for experienced Claude Code users working in **thei
 Use this path when you want to preserve existing agent workflows while making the right parts GitHub-native:
 
 1. **Open your existing checkout** and verify the current branch, instructions and skills before asking Copilot to act.
-2. **Choose your surface**: use Copilot CLI for terminal/headless workflows, and the Copilot app when a visual session/branch/PR workbench helps the team.
+2. **Choose your surface**: use Copilot CLI for terminal/headless workflows, and the Copilot Desktop app when a visual session/branch/PR workbench helps the team.
 3. **Inventory existing guidance** such as `CLAUDE.md`, scoped rules, skills, commands, hooks, MCP and runbooks.
 4. **Use Copilot as a migration assistant** to scan, classify and draft proposed Copilot artifacts; do not apply everything automatically.
 5. **Pilot one workflow** on one real repository, with a plan-only pass before edits.
@@ -18,7 +18,7 @@ Use this path when you want to preserve existing agent workflows while making th
 ## Browse this guide
 
 - [Get started in your repository](#get-started-in-your-repository)
-- [Visual Copilot app path](#visual-copilot-app-path)
+- [Visual Copilot Desktop app path](#visual-copilot-desktop-app-path)
 - [Commands and muscle memory](#commands-and-muscle-memory)
 - [Retain Claude configuration](#retain-claude-configuration)
 - [Daily workflows](#daily-workflows)
@@ -33,11 +33,11 @@ Use this path when you want to preserve existing agent workflows while making th
 | Existing checkout quick start | Install/login, inspect your own instructions, trace a real task, approve a scoped edit and verify with your project's checks. No sample app or Python prerequisite. | [Use Copilot in your repository](docs/start/use-copilot-in-your-repository.md) |
 | Migration mindset | Separate planning, continuation, permissions and parallel workers; none substitutes for review. | [Mental model](docs/migration/mental-model.md) |
 
-### Visual Copilot app path
+### Visual Copilot Desktop app path
 
 | Resource | Description | Browse |
 | --- | --- | --- |
-| Copilot app workbench | Use the Copilot app when a visual project/session/branch/PR surface helps onboarding or review. | [Use the Copilot app as a visual workbench](docs/start/copilot-app-path.md) |
+| Copilot Desktop app workbench | Use the Copilot Desktop app when a visual project/session/branch/PR surface helps onboarding or review. | [Use the Copilot Desktop app as a visual workbench](docs/start/copilot-app-path.md) |
 
 ### Commands and muscle memory
 
