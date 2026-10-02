@@ -75,6 +75,7 @@ Use this path when you want to preserve existing agent workflows while making th
 | --- | --- | --- |
 | Planning and approvals | Scope work before execution; distinguish tool visibility, grants and isolation. | [Planning](docs/workflows/planning.md) · [Permissions](docs/workflows/permissions.md) |
 | Continuation and parallel work | Bound Autopilot, assign one editor, resume with a verified handoff. | [Autopilot](docs/workflows/autopilot.md) · [Fleet](docs/workflows/fleet-and-subagents.md) · [Sessions](docs/workflows/sessions-and-context.md) |
+| Token economy | Scope the task, choose a capable model and avoid repeating work without new evidence. | [Token economy](docs/workflows/token-economy.md) |
 | Finish with evidence | Inspect changes, run your own checks, report actual results. | [Review and validation](docs/workflows/review-and-validation.md) |
 | Success criteria | Decide whether a workflow is reusable based on plan, implementation, evidence and governance quality. | [What good looks like](docs/workflows/success-criteria.md) |
 
