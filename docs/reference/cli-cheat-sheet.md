@@ -27,14 +27,14 @@ Find the familiar task, try the Copilot action, then check the difference before
 | Claude plugins | plugin.json plus skills/ | Check installed CLI options and review archive before installation |
 | Claude model selection | /model or --model MODEL | Choose a model available to your account and policy |
 | switch model mid-session | /model | Changing model loses prior model cache reuse; check task fit, /context and /usage |
-| Copilot Auto routing | /model auto | Task, availability, policy and cache-aware; paid supported-surface discount is not a quality guarantee or HydraFusion |
+| Copilot Auto routing | /model auto | Task, availability, policy and cache-aware; paid supported-surface discount applies where eligible; HydraFusion is a separate preview |
 | Claude context inspection | /context | Occupancy including tools is not credits or conversation durability |
 | Claude /usage | /usage | Session credits/tokens, not account billing; missing token counts do not mean zero usage |
 | Browse past coding sessions | /chronicle | Opens the history-insights picker; it does not resume a conversation |
 | Prepare a standup from recent work | /chronicle standup | Defaults to the last 24 hours; append for the last 3 days to change the period |
 | Find an earlier discussion | /chronicle search authentication | Replace authentication with your topic; searches session content, not source files |
 | Improve prompting habits | /chronicle tips | Uses recent sessions; append for better prompting to focus recommendations |
-| Understand token spending | /chronicle cost-tips | Analyzes session patterns, not a free billing ledger; /usage shows current session |
+| Understand token spending | /chronicle cost-tips | Analyzes session patterns and may use model work; /usage shows current session, account views show billing-period usage |
 | Refine project instructions from repeated corrections | /chronicle improve | Current repository only; approved suggestions update .github/copilot-instructions.md, so avoid duplicating CLAUDE.md |
 | Turn a repeated workflow into a skill | /chronicle skills create | Drafts from session usage; compare with existing .claude/skills before applying |
 | Review suggested skills | /chronicle skills review | Review instructions, scripts and permissions before accepting a proposal |
