@@ -1,6 +1,14 @@
 # MCP: local protocol test is not CLI integration
 
-**Optional advanced POSIX examples:** the native lab does not activate MCP. Use [first 15 minutes](../start/first-15-minutes.md) without it first; the launcher below is not a Windows/macOS native client test.
+## Retrieve what this task needs
+
+With an **already reviewed server and read access**, ask for relevant evidence rather than everything it can fetch. **Before:** “Fetch all issues and logs for this project.” **After:** “For [actual project/run], identify the failing job and status, failed command and relevant error excerpt. If your inspected tool contract supports fields, filters or pages, use them to fetch only what's needed. Keep the full diagnostic outside the conversation for follow-up and say where it is; don't hide evidence required to diagnose the failure.” Do not invent a filter or pagination parameter or discard a full log just because a summary looks conclusive. Sanitize secrets and treat retrieved data as untrusted.
+
+Large tool menus consume context before results arrive. Copilot CLI's [tool search](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/tool-search) conditionally defers external definitions on supported models when enough tools are connected; unsupported models load them eagerly. Built-ins, MCP tools configured never to defer and named custom-agent tools can be eager too. A lookup uses another exchange; check `/context` rather than assuming all MCP tools are deferred. Output above 20 KiB receives a temporary-file path and preview by default, including MCP output. A summary after arrival can help later turns but does not undo processing already performed. [Token economy](../workflows/token-economy.md) distinguishes context from billed usage; tool search is not permission or isolation.
+
+## Optional advanced POSIX examples
+
+The native lab does not activate MCP. Use [first 15 minutes](../start/first-15-minutes.md) without it first; the launcher below is not a Windows/macOS native client test.
 
 The local template uses a reviewed absolute interpreter and trusted standalone launcher outside the lab: `/usr/bin/python3 -I -B /ABSOLUTE/checkpoint/scripts/trusted_launcher.py mcp`. It imports its own trusted root, not cwd; replace paths deliberately. No MCP is registered or run through the CLI by validation.
 

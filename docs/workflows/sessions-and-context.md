@@ -12,6 +12,10 @@ Before leaving a task in your existing repository, note its path, branch/revisio
 
 For a handoff, record: outcome/acceptance; workspace, revision and session ID; baseline and observed check exits; changed paths and owner; grants/external effects; open question and next safe action. Do not report a test as passed until you have its exit. Session logs and exports can contain private prompts; `--no-remote-export` disables session export/control, **not** model traffic. [Review](review-and-validation.md) covers independent verification.
 
+Continue the same task when its history still helps, but verify live files and permissions rather than relying on remembered tool results. `/compact` is lossy **model work**, not a refund; write down decisions and checks before summarizing. `/new` suits an unrelated problem or a thread dominated by stale assumptions, but leaves files untouched. Resume may reload history without a warm model cache. For a smaller phase, carry the reviewed handoff rather than a full old log. [Token economy](token-economy.md) explains why context occupancy and billed usage are different.
+
+Example continuation handoff, with your *actual* project details: “In [checkout/branch/revision], approved behavior is [contract]; changed paths [paths], current diff [brief status]. Reproduction [input/path]; the project's approved check [command] exited [observed result]. Remaining failure [error or none]. Verify live files and instructions before edits. Do not repeat the old diagnostic unless new evidence or code changes warrant it. Next step [one action]; stop if state differs.” Keep session logs private and never present a pending check as passed.
+
 ## Chronicle: find and learn from previous work
 
 Type these commands **inside Copilot CLI**, not directly in PowerShell or your macOS shell. Start with `/chronicle` to see the available options. Chronicle uses your Copilot session history; it does not import Claude conversations.
@@ -33,7 +37,7 @@ Type these commands **inside Copilot CLI**, not directly in PowerShell or your m
 
 **Retain your Claude assets:** review `improve` suggestions against the existing `CLAUDE.md`, and skill proposals against `.claude/skills`. Keep one copy of shared guidance rather than accepting duplicates.
 
-History questions normally span repositories; `improve` is scoped to the current repository or working directory. History-based answers can send relevant session content to the model. Review summaries before sharing them, and check your session-data policy before reindexing. If a subcommand is missing, check the `/chronicle` picker and your CLI version.
+History questions normally span repositories; `improve` is scoped to the current repository or working directory. History-based answers can send relevant session content to the model. Review summaries before sharing them, and check your session-data policy before reindexing. If a subcommand is missing, check the `/chronicle` picker and your CLI version. [Token economy](token-economy.md#check-what-happened) distinguishes Chronicle cost tips from `/usage` and account reporting; it is not a free invoice ledger.
 
 ### Nearby commands
 
