@@ -37,7 +37,7 @@ Type these commands **inside Copilot CLI**, not directly in PowerShell or your m
 
 **Retain your Claude assets:** review `improve` suggestions against the existing `CLAUDE.md`, and skill proposals against `.claude/skills`. Keep one copy of shared guidance rather than accepting duplicates.
 
-History questions normally span repositories; `improve` is scoped to the current repository or working directory. History-based answers can send relevant session content to the model. Review summaries before sharing them, and check your session-data policy before reindexing. If a subcommand is missing, check the `/chronicle` picker and your CLI version. [Token economy](token-economy.md#check-what-happened) distinguishes Chronicle cost tips from `/usage` and account reporting; it is not a free invoice ledger.
+History questions normally span repositories; `improve` is scoped to the current repository or working directory. History-based answers can send relevant session content to the model. Review summaries before sharing them, and check your session-data policy before reindexing. If a subcommand is missing, check the `/chronicle` picker and your CLI version. [Token economy](token-economy.md#check-what-happened) explains how Chronicle cost tips, `/usage` and account billing reports answer different questions; Chronicle analysis may itself involve model work.
 
 ### Nearby commands
 
