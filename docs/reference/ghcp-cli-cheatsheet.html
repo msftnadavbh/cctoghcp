@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GHCP CLI Cheat Sheet</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1b1f24;--mu:#5d6773;--ac:#6e40c9;--bd:#e1e5ea;--cd:#eef0f4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--card:#171c23;--tx:#e8ecf1;--mu:#98a3b0;--ac:#a98bf0;--bd:#2a313b;--cd:#222a34}}
+:root[data-theme="dark"]{--bg:#0f1318;--card:#171c23;--tx:#e8ecf1;--mu:#98a3b0;--ac:#a98bf0;--bd:#2a313b;--cd:#222a34}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.5}
+.w{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0}
+.sub{color:var(--mu);font-size:13px;margin-bottom:12px}
+input{width:100%;box-sizing:border-box;padding:12px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);font-size:16px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 0}
+.tabs button{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:6px 12px;border-radius:999px;font-size:14px;cursor:pointer}
+.tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.row{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+code{direction:ltr;unicode-bidi:isolate;background:var(--cd);padding:3px 8px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;white-space:nowrap;cursor:pointer;color:var(--ac)}
+.d{flex:1;font-size:14px}
+.new{font-size:11px;background:var(--ac);color:#fff;border-radius:6px;padding:1px 6px;margin-inline-start:6px}
+.bar{display:flex;gap:8px;margin:12px 0}
+.bar button{flex:1;padding:10px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:14px;cursor:pointer}
+.exp{background:#c77a00}
+.lang{display:flex;gap:6px;justify-content:flex-end}.lang button{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:5px 12px;border-radius:8px;cursor:pointer;font-size:13px}.lang button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.ft{color:var(--mu);font-size:12px;margin-top:16px}
+a{color:var(--ac)}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="lang"><button id="lhe">עברית</button><button id="len">English</button></div>
+<h1 id="h1"></h1>
+<div class="sub" id="sub"></div>
+<input id="q" autocomplete="off">
+<div class="tabs" id="tabs"></div>
+<div id="list"></div>
+<div class="bar"><button id="share"></button><button id="theme"></button></div>
+<div class="ft" id="ft"></div>
+</div>
+<script>
+var UPDATED="2026-10-04";
+// [category, command, description, 0 none | 1 new | 2 experimental/preview]
+var D=[
+["סשן","/help","רשימת כל הפקודות",0],
+["סשן","/clear , /new","ניקוי השיחה, שומר הרשאות ומודל",0],
+["סשן","/compact","סיכום ההיסטוריה לשחרור קונטקסט",0],
+["סשן","/context","ויזואליזציה של ניצול חלון הקונטקסט",0],
+["סשן","/usage","PRU, זמן סשן, שינויי קוד וטוקנים לפי מודל",0],
+["סשן","/session","מידע על הסשן הנוכחי",0],
+["סשן","/session list","רשימת סשנים אחרונים",1],
+["סשן","/session rename <name> , /rename","שינוי שם לסשן",0],
+["סשן","/session export","ייצוא סשן לקובץ",1],
+["סשן","/session delete <id>","מחיקת סשן שמור",1],
+["סשן","/resume","מעבר לסשן קודם, כולל סשנים מרוחקים",0],
+["סשן","/rewind","ביטול התור האחרון והחזרת קבצים",1],
+["סשן","/share","העתקת הסשן כ-markdown ללוח",0],
+["סשן","/share gist","יצירת GitHub Gist מהסשן",0],
+["סשן","/share file [path]","ייצוא הסשן לקובץ Markdown",1],
+["סשן","/copy","העתקת התשובה האחרונה ללוח",0],
+["סשן","/exit , /quit","יציאה מה-CLI",0],
+["סשן","/restart","הפעלה מחדש של הסשן וטעינת תצורה",1],
+["Chronicle","/chronicle","פתיחת תובנות על היסטוריית הסשנים",2],
+["Chronicle","/chronicle standup","דוח סטנדאפ מהסשנים האחרונים (ברירת מחדל 24 שעות)",2],
+["Chronicle","/chronicle tips","טיפים אישיים לפי דפוסי השימוש שלך",2],
+["Chronicle","/chronicle cost tips","ניתוח צריכת טוקנים והצעות לחיסכון",2],
+["Chronicle","/chronicle search <query>","חיפוש בהיסטוריית הסשנים",2],
+["Chronicle","/chronicle improve","הצעות לשיפור קובץ ההוראות",2],
+["Chronicle","/chronicle reindex","בנייה מחדש של אינדקס הסשנים וסנכרון לחשבון",2],
+["מודלים וסוכנים","/model , /models","בחירת מודל (עם מכפילי PRU)",0],
+["מודלים וסוכנים","/model <name>","בחירת מודל ישירות",0],
+["מודלים וסוכנים","/fleet","מצב Fleet: סוכני משנה במקביל",0],
+["מודלים וסוכנים","/tasks","משימות רקע, סוכני משנה וסשני shell",0],
+["מודלים וסוכנים","/agent","בחירת סוכן מותאם",0],
+["סביבת סוכן","/init","יצירת copilot-instructions.md לריפו",0],
+["סביבת סוכן","/init suppress","הפסקת הצעות init לריפו",0],
+["סביבת סוכן","/instructions","רשימת קבצי הוראות וסטטוס",0],
+["סביבת סוכן","/instructions toggle [path]","הפעלה/כיבוי של כל הקבצים או קובץ ספציפי",1],
+["סביבת סוכן","/instructions show <path>","הצגת תוכן קובץ הוראות",1],
+["סביבת סוכן","/skills","רשימת Skills פעילים",0],
+["סביבת סוכן","/skills add [path]","הוספת Skill מתיקייה עם SKILL.md",0],
+["סביבת סוכן","/skills remove [name]","הסרת Skill",0],
+["סביבת סוכן","/mcp add","רישום שרת MCP חדש",0],
+["סביבת סוכן","/mcp show [name]","הצגת שרתים או פרטי שרת וכלים",0],
+["סביבת סוכן","/mcp enable|disable <name>","הפעלה או כיבוי של שרת",0],
+["סביבת סוכן","/mcp reload","טעינה מחדש של תצורות MCP",0],
+["סביבת סוכן","/plugin install <source>","התקנת תוסף מ-GitHub, URL, נתיב או SSH",0],
+["סביבת סוכן","/plugin list|update|uninstall","ניהול תוספים",0],
+["סביבת סוכן","/plugin marketplace add","רישום Marketplace של תוספים",0],
+["סביבת סוכן","/extensions","ניהול הרחבות CLI",1],
+["קוד","/diff","צפייה בשינויים, אפשר להגיב על שורות עם c",0],
+["קוד","/review","הרצת סוכן code review",0],
+["קוד","/pr","עבודה עם Pull Requests מה-CLI",1],
+["קוד","/ide","חיבור ל-IDE (VS Code ועוד)",0],
+["קוד","/lsp","ניהול שרתי Language Server",0],
+["קוד","/terminal-setup","הגדרת Shift+Enter לריבוי שורות",0],
+["זרימות עבודה","/plan","תכנון לפני כתיבת קוד",0],
+["זרימות עבודה","/research","מחקר עמוק עם דוח לייצוא",0],
+["זרימות עבודה","/delegate","העברת משימה ל-Copilot coding agent (ענף ו-PR ברקע)",0],
+["זרימות עבודה","/remote","גישה מרחוק לסשן מ-GitHub.com ומהמובייל",0],
+["הרשאות","/allow-all , /yolo","אישור כל ההרשאות לסשן (בזהירות)",0],
+["הרשאות","/allow-all off","ביטול כל ההרשאות",1],
+["הרשאות","/allow-all show","הצגת מצב ההרשאות",1],
+["הרשאות","/add-dir <path>","הוספת תיקייה מורשית",0],
+["הרשאות","/list-dirs","הצגת התיקיות המורשות",0],
+["הרשאות","/cwd , /cd [path]","הצגה או שינוי תיקיית עבודה",0],
+["הרשאות","/reset-allowed-tools","איפוס הכלים המורשים",0],
+["הגדרות ועזרה","/theme","הצגה או שינוי ערכת נושא",0],
+["הגדרות ועזרה","/experimental","הפעלה וכיבוי של יכולות ניסיוניות (preview)",2],
+["הגדרות ועזרה","/streamer-mode","הסתרת נתיבים ומשתני סביבה בשיתוף מסך",0],
+["הגדרות ועזרה","/changelog","הצגת הערות גרסה",0],
+["הגדרות ועזרה","/version","גרסה נוכחית ובדיקת עדכון",1],
+["הגדרות ועזרה","/update","עדכון ה-CLI",0],
+["הגדרות ועזרה","/feedback","שליחת משוב או באג",0],
+["חשבון","/login","התחברות ל-GitHub (device flow)",0],
+["חשבון","/logout","התנתקות",0],
+["חשבון","/user [show|list|switch]","ניהול משתמשי GitHub",0],
+["קיצורי מקלדת","Shift+Tab","מעבר בין מצבים (רגיל, תכנון, אוטופיילוט)",0],
+["קיצורי מקלדת","Shift+Enter","שורה חדשה (אחרי /terminal-setup)",0],
+["קיצורי מקלדת","Esc","עצירת הפעולה הנוכחית או ביטול compact",0],
+["קיצורי מקלדת","Esc Esc","שחזור קבצים לתמונת מצב קודמת",0],
+["קיצורי מקלדת","Ctrl+C","ביטול או ניקוי השורה; פעמיים ליציאה",0],
+["קיצורי מקלדת","Ctrl+D","יציאה",0],
+["קיצורי מקלדת","Ctrl+L","ניקוי המסך",0],
+["קיצורי מקלדת","Ctrl+R","חיפוש בהיסטוריית הנחיות",0],
+["קיצורי מקלדת","Tab","השלמה אוטומטית ורמזי ארגומנטים",0],
+["קיצורי מקלדת","/","פתיחת בורר פקודות עם חיפוש",0],
+["קיצורי מקלדת","@file","הוספת קובץ לקונטקסט",0],
+["קיצורי מקלדת","!cmd","הרצת פקודת shell ישירות",0],
+["דגלי הפעלה","copilot -p \"...\"","הרצה לא אינטראקטיבית",0],
+["דגלי הפעלה","--model <name>","מודל ברירת מחדל בהפעלה",0],
+["דגלי הפעלה","--experimental","הפעלת יכולות ניסיוניות (כולל chronicle)",2],
+["דגלי הפעלה","--no-experimental","כיבוי כל היכולות הניסיוניות",0],
+["דגלי הפעלה","--allow-all-tools","אישור כל הכלים (נדרש בשימוש תכנותי)",0],
+["דגלי הפעלה","--allow-tool=TOOL , --deny-tool","אישור או חסימה של כלי",0],
+["דגלי הפעלה","--allow-url , --deny-url","אישור או חסימה של כתובות",0],
+["דגלי הפעלה","--add-dir <path>","הוספת תיקייה מורשית",0],
+["דגלי הפעלה","--enable-all-github-mcp-tools","כל כלי ה-GitHub MCP",0],
+["דגלי הפעלה","--add-github-mcp-tool=TOOL","הוספת כלי GitHub MCP בודד",0],
+["דגלי הפעלה","--add-github-mcp-toolset=SET","הוספת ערכת כלים של GitHub MCP",0],
+["דגלי הפעלה","--no-auto-update","כיבוי עדכונים אוטומטיים",0],
+["דגלי הפעלה","copilot logout","התנתקות מחוץ לסשן",0]
+];
+var E=["List all commands", "Clear the conversation (keeps permissions and model)", "Summarize history to free up context", "Visualize context window usage", "PRU, session time, code changes and tokens per model", "Info about the current session", "List recent sessions", "Rename the session", "Export a session to a file", "Delete a saved session", "Switch to a previous session, including remote ones", "Undo the last turn and restore files", "Copy the session as markdown to clipboard", "Create a GitHub Gist from the session", "Export the session to a Markdown file", "Copy the last response to clipboard", "Exit the CLI", "Restart the session and reload config", "Open insights about your session history", "Standup report from recent sessions (default 24h)", "Personalized tips based on your usage patterns", "Token usage analysis and saving suggestions", "Search your session history", "Suggestions to improve your instructions file", "Rebuild the session index and sync to your account", "Choose the AI model (with PRU multipliers)", "Choose a model directly", "Fleet mode: parallel sub-agents", "Background tasks, sub-agents and shell sessions", "Choose a custom agent", "Generate copilot-instructions.md for the repo", "Stop init suggestions for this repo", "List instruction files and their status", "Toggle all instruction files or a specific one", "Show the contents of an instruction file", "List active Skills", "Add a Skill from a folder with SKILL.md", "Remove a Skill", "Register a new MCP server", "Show servers or server details and tools", "Enable or disable a server", "Reload MCP configurations", "Install a plugin from GitHub, URL, path or SSH", "Manage plugins", "Register a plugin Marketplace", "Manage CLI extensions", "View changes; comment on lines with c", "Run the code review agent", "Work with Pull Requests from the CLI", "Connect to an IDE (VS Code and others)", "Manage Language Server servers", "Set up Shift+Enter for multi-line input", "Plan before writing code", "Deep research with an exportable report", "Hand a task to the Copilot coding agent (background branch and PR)", "Remote access to the session from GitHub.com and mobile", "Allow all permissions for the session (use with care)", "Revoke all permissions", "Show the permission status", "Add an allowed directory", "Show allowed directories", "Show or change the working directory", "Reset allowed tools", "Show or change the theme", "Enable or disable experimental (preview) features", "Hide paths and env vars during screen sharing", "Show release notes", "Current version and update check", "Update the CLI", "Send feedback or a bug report", "Log in to GitHub (device flow)", "Log out", "Manage GitHub users", "Cycle modes (normal, plan, autopilot)", "New line (after /terminal-setup)", "Stop the current action or cancel compact", "Restore files to a previous snapshot", "Cancel or clear the line; twice to exit", "Exit", "Clear the screen", "Search prompt history", "Autocomplete and argument hints", "Open the command picker with search", "Add a file to the context", "Run a shell command directly", "Non-interactive run", "Default model at launch", "Enable experimental features (including chronicle)", "Disable all experimental features", "Allow all tools (required for programmatic use)", "Allow or deny a specific tool", "Allow or deny URLs", "Add an allowed directory at launch", "All GitHub MCP tools", "Add a single GitHub MCP tool", "Add a GitHub MCP toolset", "Disable automatic updates", "Log out from outside a session"];
+var CE={"סשן": "Session", "Chronicle": "Chronicle", "מודלים וסוכנים": "Models & Agents", "סביבת סוכן": "Agent Environment", "קוד": "Code", "זרימות עבודה": "Workflows", "הרשאות": "Permissions", "הגדרות ועזרה": "Settings & Help", "חשבון": "Account", "קיצורי מקלדת": "Keyboard Shortcuts", "דגלי הפעלה": "Launch Flags", "הכל": "All"};
+var lang="he";
+try{lang=localStorage.getItem("lang")||((navigator.language||"he").indexOf("he")===0?"he":"en")}catch(e){lang=((navigator.language||"he").indexOf("he")===0?"he":"en")}
+var T={he:{h:"GitHub Copilot CLI: קיצורים ופקודות",s:"עודכן לאחרונה: ",s2:" · לחיצה על פקודה מעתיקה אותה",q:"חיפוש פקודה או תיאור...",sh:"שתף קישור",shd:"הקישור הועתק",th:"מצב כהה/בהיר",nw:"חדש",ex:"ניסיוני",no:"לא נמצאו תוצאות",ft:'הרשימה נבדקת מול <a href="https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference">התיעוד הרשמי</a>. בתוך ה-CLI הקלידו /help לרשימה המלאה בגרסה שלכם. "ניסיוני" = preview, דורש /experimental on. "חדש" = נוסף לאחרונה.'},en:{h:"GitHub Copilot CLI: Commands & Shortcuts",s:"Last updated: ",s2:" · Tap a command to copy it",q:"Search a command or description...",sh:"Share link",shd:"Link copied",th:"Dark/Light mode",nw:"New",ex:"Experimental",no:"No results",ft:'Checked against the <a href="https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference">official docs</a>. Run /help inside the CLI for the full list for your version. "Experimental" = preview, requires /experimental on. "New" = recently added.'}};
+var cats=["הכל"].concat(D.map(function(x){return x[0]}).filter(function(v,i,a){return a.indexOf(v)===i})),cur="הכל";
+var $=function(i){return document.getElementById(i)};
+function render(){
+ var q=$("q").value.toLowerCase(),h="",t=T[lang];
+ D.forEach(function(x,i){
+  var d=lang==="he"?x[2]:E[i];
+  if(cur!=="הכל"&&x[0]!==cur)return;
+  if(q&&(x[1]+d).toLowerCase().indexOf(q)<0)return;
+  h+='<div class="row"><code data-c="'+x[1].replace(/"/g,"&quot;")+'">'+x[1].replace(/</g,"&lt;")+'</code><div class="d">'+d+(x[3]==1?'<span class="new">'+t.nw+'</span>':x[3]==2?'<span class="new exp">'+t.ex+'</span>':'')+'</div></div>';
+ });
+ $("list").innerHTML=h||'<div class="sub">'+t.no+'</div>';
+}
+function tabs(){
+ $("tabs").innerHTML=cats.map(function(c){return '<button class="'+(c===cur?'on':'')+'" data-t="'+c+'">'+(lang==="he"?c:CE[c])+'</button>'}).join("");
+}
+function setLang(l){
+ lang=l;try{localStorage.setItem("lang",l)}catch(e){}
+ var t=T[l],r=document.documentElement;
+ r.lang=l;r.dir=l==="he"?"rtl":"ltr";
+ $("h1").textContent=t.h;$("sub").textContent=t.s+UPDATED+t.s2;
+ $("q").placeholder=t.q;$("share").textContent=t.sh;$("theme").textContent=t.th;$("ft").innerHTML=t.ft;
+ $("lhe").className=l==="he"?"on":"";$("len").className=l==="en"?"on":"";
+ tabs();render();
+}
+$("lhe").onclick=function(){setLang("he")};$("len").onclick=function(){setLang("en")};
+$("tabs").onclick=function(e){var t=e.target.getAttribute("data-t");if(t){cur=t;tabs();render()}};
+$("q").oninput=render;
+$("list").onclick=function(e){var c=e.target.getAttribute&&e.target.getAttribute("data-c");if(c&&navigator.clipboard){navigator.clipboard.writeText(c).catch(function(){});e.target.style.outline="2px solid var(--ac)";setTimeout(function(){e.target.style.outline=""},500)}};
+$("share").onclick=function(){var u=location.href;if(navigator.share){navigator.share({title:document.title,url:u}).catch(function(){})}else if(navigator.clipboard){navigator.clipboard.writeText(u);$("share").textContent=T[lang].shd}};
+$("theme").onclick=function(){var r=document.documentElement,d=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme:dark)").matches);r.setAttribute("data-theme",d?"light":"dark")};
+setLang(lang);
+</script>
+</body>
+</html>
